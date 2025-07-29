@@ -4,7 +4,7 @@ import RightLoginContent from "../components/RightLoginContent";
 const Login = () => {
     return (
         <main className="flex justify-between min-h-screen w-full max-w-[1920px]">
-            <div className="left w-[50%] flex items-center justify-center">
+            <div className="left w-[50%] flex items-center">
                 <LoginForm />
             </div>
             <section
