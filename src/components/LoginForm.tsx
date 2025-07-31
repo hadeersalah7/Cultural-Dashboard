@@ -1,15 +1,24 @@
 import { useEffect } from "react"
 import loginLogo from "../assets/login logo.png"
+import * as Yup from "yup";
 const LoginForm = () => {
     useEffect(() => {
-        const focusedEle = document.querySelector("#email") as HTMLInputElement
+        const focusedEle = document.getElementById("email"); 
         if (focusedEle !== document.activeElement) {
             focusedEle?.focus()
         }
     }, [])
+    const validationSchema = Yup.object().shape({
+        email: Yup.string()
+            .email("Invalid email format")
+            .required("Email is required"),
+        password: Yup.string()
+            .min(6, "Password must be at least 6 characters")
+            .required("Password is required"),
+    });
     return (
-        <div className="form-wrapper w-full max-w-[490px] pl-15 relative">
-            <div className="w-[150px] mb-15 absolute -top-28 left-1/2 transform -translate-y-1/2">
+        <div className="form-wrapper w-full max-w-[490px] min-[800px]:px-6 relative max-[700px]:px-10">
+            <div className="w-[150px] mb-15 absolute loginLogo -top-28 left-[35%] max-[700px]:left-[35%] transform -translate-y-1/2">
                 <img src={loginLogo} alt="logo"/>
             </div>
             <form>
@@ -19,7 +28,7 @@ const LoginForm = () => {
                         type="email"
                         id="email"
                         placeholder="johndoe@email.com"
-                        className="w-full border-b mt-3 border-gray-300 bg-transparent text-gray-400 placeholder-gray-400 focus:outline-none
+                        className=" w-full border-b mt-3 border-gray-300 bg-transparent text-gray-400 placeholder-gray-400 focus:outline-none
                         focus:border-[#2183e8]
                         "
                     />
