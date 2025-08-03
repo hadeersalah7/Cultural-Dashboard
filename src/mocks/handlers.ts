@@ -12,7 +12,7 @@ const users: User[] = [
         id: 1,
         name: "Hadeer Salah",
         password: "password123",
-        email: "hadeer@example.com",
+        email: "hadeer@gmail.com",
     },
     { id: 2, name: "Amunet", password: "mypassword", email: "amunet@amunet.com" },
 ];

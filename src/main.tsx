@@ -1,13 +1,17 @@
 import { worker } from './mocks/browser.ts'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { Provider } from 'react-redux'
+import store from './store.ts'
 import './index.css'
 import App from './App.tsx'
 worker.start().then(() => {
   createRoot(document.getElementById('root')!).render(
-    <StrictMode>
-      <App />
-    </StrictMode>,
+    // <StrictMode>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    // </StrictMode>,
   )
 })
 

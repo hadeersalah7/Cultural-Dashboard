@@ -5,9 +5,14 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 import type { ILogin } from "./redux-features/login/types";
+import type { AppDispatch, RootState } from "../store";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "./redux-features/login/loginUserSlice";
 
 const LoginForm = () => {
+    const {token} = useSelector((state: RootState) => state.loginUser);
     const navigate = useNavigate();
+    const dispatch: AppDispatch = useDispatch();
     useEffect(() => {
         const focusedEle = document.getElementById("email");
         if (focusedEle !== document.activeElement) {
@@ -29,9 +34,12 @@ const LoginForm = () => {
     } = useForm({ resolver: yupResolver(validationSchema) });
 
     const onSubmit = (data: ILogin) => {
-        console.log({data});
-        // preventFormSubmimtion(event);
-        navigate("/dashboard");
+        dispatch(loginUser(data))
+        if (!token) {
+            navigate("/")
+        } else {
+            navigate("/dashboard");
+        }
     };
     return (
         <div className="form-wrapper w-full max-w-[490px] min-[800px]:px-6 relative max-[700px]:px-10">
