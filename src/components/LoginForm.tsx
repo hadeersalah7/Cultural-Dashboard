@@ -1,9 +1,10 @@
-import  { useEffect } from "react";
+import  { useEffect, useState } from "react";
 import loginLogo from "../assets/login logo.png";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
+import type { ILogin } from "./redux-features/login/types";
 
 const LoginForm = () => {
     const navigate = useNavigate();
@@ -27,8 +28,8 @@ const LoginForm = () => {
         handleSubmit,
     } = useForm({ resolver: yupResolver(validationSchema) });
 
-    const onSubmit = (data: any) => {
-        console.log(data);
+    const onSubmit = (data: ILogin) => {
+        console.log({data});
         // preventFormSubmimtion(event);
         navigate("/dashboard");
     };
