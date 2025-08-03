@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import loginLogo from "../assets/login logo.png";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
@@ -8,9 +8,10 @@ import type { ILogin } from "./redux-features/login/types";
 import type { AppDispatch, RootState } from "../store";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "./redux-features/login/loginUserSlice";
-
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 const LoginForm = () => {
-    const {token} = useSelector((state: RootState) => state.loginUser);
+    const { token } = useSelector((state: RootState) => state.loginUser);
+    const [showPass, setShowPass] = useState(false);
     const navigate = useNavigate();
     const dispatch: AppDispatch = useDispatch();
     useEffect(() => {
@@ -34,9 +35,9 @@ const LoginForm = () => {
     } = useForm({ resolver: yupResolver(validationSchema) });
 
     const onSubmit = (data: ILogin) => {
-        dispatch(loginUser(data))
+        dispatch(loginUser(data));
         if (!token) {
-            navigate("/")
+            navigate("/");
         } else {
             navigate("/dashboard");
         }
@@ -72,13 +73,19 @@ const LoginForm = () => {
                     </label>
                     <input
                         {...register("password")}
-                        type="password"
+                        type={showPass ? "text" : "password"}
                         placeholder="password"
                         className="w-full border-b mt-3 border-gray-300 bg-transparent text-gray-400 placeholder-gray-400 focus:outline-none
                         focus:border-[#2183e8] 
                         "
                         id="password"
                     />
+                    <span
+                        onClick={() => setShowPass((prev) => !prev)}
+                        className="text-gray-400 absolute right-7 top-[50%] transform -translate-y-1/8 cursor-pointer"
+                    >
+                        {showPass ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+                    </span>
                     <p className="pt-3 text-red-600">{errors.password?.message}</p>
                 </div>
 
