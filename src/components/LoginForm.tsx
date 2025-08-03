@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     useEffect(() => {
         const focusedEle = document.getElementById("email");
         if (focusedEle !== document.activeElement) {
@@ -30,7 +30,7 @@ const LoginForm = () => {
     const onSubmit = (data: any) => {
         console.log(data);
         // preventFormSubmimtion(event);
-        // navigate("/dashboard");
+        navigate("/dashboard");
     };
     return (
         <div className="form-wrapper w-full max-w-[490px] min-[800px]:px-6 relative max-[700px]:px-10">
