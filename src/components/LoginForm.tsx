@@ -9,8 +9,9 @@ import type { AppDispatch, RootState } from "../store";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "./redux-features/login/loginUserSlice";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { toast } from "react-toastify";
 const LoginForm = () => {
-    const { token } = useSelector((state: RootState) => state.loginUser);
+    const { token, loading } = useSelector((state: RootState) => state.loginUser as { token: string; loading: boolean });
     const [showPass, setShowPass] = useState(false);
     const navigate = useNavigate();
     const dispatch: AppDispatch = useDispatch();
@@ -32,14 +33,24 @@ const LoginForm = () => {
         register,
         formState: { errors },
         handleSubmit,
+        watch
     } = useForm({ resolver: yupResolver(validationSchema) });
 
-    const onSubmit = (data: ILogin) => {
-        dispatch(loginUser(data));
+    const email = watch("email");
+    const password = watch("password");
+
+    const onSubmit = async (data: ILogin) => {
+        try {
+            const token = await dispatch(loginUser(data));
         if (!token) {
             navigate("/");
+            // toast.error("Login failed, Please Try Again!")
         } else {
             navigate("/dashboard");
+        }
+        } catch (error) {
+            console.error(error)
+            navigate("/")
         }
     };
     return (
@@ -91,10 +102,11 @@ const LoginForm = () => {
 
                 <button
                     type="submit"
-                    className="btn loginBtn flex mt-12 w-full
-                text-white font-bold tracking-widest rounded-[40px] h-[50px] justify-center items-center cursor-pointer"
+                    className={`btn loginBtn flex mt-12 w-full
+                text-white font-bold tracking-widest rounded-[40px] h-[50px] justify-center items-center cursor-pointer  transition-all duration-300`}
+                    disabled={!email || !password || loading}
                 >
-                    Login
+                    {loading ? <span className="loading loading-ring loading-lg" /> : "Login"}
                 </button>
             </form>
         </div>

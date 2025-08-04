@@ -14,6 +14,11 @@
     transition: width 0.3s;
 }
 
+.loginBtn:disabled {
+    background-image: linear-gradient(129deg,hsl(215, 5%, 53%), #d2d7dd);
+    cursor: not-allowed;
+}
+
 @media screen and (min-width: 800px) and (max-width: 950px) {
     .loginBtn {
         width: 60%;

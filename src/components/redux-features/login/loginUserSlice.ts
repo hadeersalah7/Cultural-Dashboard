@@ -20,7 +20,7 @@ export const loginUser = createAsyncThunk<string, ILogin, { rejectValue: string 
             return token;
         } catch (error: any) {
             const errorMessage = error.response?.data?.message || "Login failed";
-            toast.error(errorMessage);
+            // toast.error(errorMessage);
             return thunkAPI.rejectWithValue(errorMessage);
         }
     }
@@ -33,6 +33,7 @@ const loginUserSlice = createSlice({
         logoutUser: (state) => {
             state.email = "";
             state.password = "";
+            state.token = "";
             state.loading = false;
             state.error = null;
         }
