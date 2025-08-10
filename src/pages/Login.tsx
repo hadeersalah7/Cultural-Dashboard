@@ -1,6 +1,5 @@
 import loginImage from "../assets/login-home-image.jpg";
-import LoginForm from "../components/LoginForm";
-import RightLoginContent from "../components/RightLoginContent";
+import { LoginForm, RightLoginContent } from "../components";
 const Login = () => {
     return (
         <main className="flex justify-between min-h-screen w-full">

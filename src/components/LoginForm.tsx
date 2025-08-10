@@ -9,9 +9,8 @@ import type { AppDispatch, RootState } from "../store";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../login/loginUserSlice";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { toast } from "react-toastify";
 const LoginForm = () => {
-    const { token, loading } = useSelector((state: RootState) => state.loginUser as { token: string; loading: boolean });
+    const {loading } = useSelector((state: RootState) => state.loginUser);
     const [showPass, setShowPass] = useState(false);
     const navigate = useNavigate();
     const dispatch: AppDispatch = useDispatch();
@@ -44,7 +43,6 @@ const LoginForm = () => {
             const token = await dispatch(loginUser(data));
         if (!token) {
             navigate("/");
-            // toast.error("Login failed, Please Try Again!")
         } else {
             navigate("/dashboard");
         }

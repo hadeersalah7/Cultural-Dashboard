@@ -1,8 +1,9 @@
 import {Route, Routes, BrowserRouter as Router} from "react-router-dom"
-import Dashboard from "./pages/Dashboard"
-import Login from "./pages/Login"
+
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { ProtectedRoutes } from "./components";
+import { Dashboard, Layout, Login } from "./pages";
 function App() {
 
 
@@ -10,7 +11,15 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoutes>
+                <Layout />
+              </ProtectedRoutes>
+            }
+          />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
         <ToastContainer position="bottom-center" />
