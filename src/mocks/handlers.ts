@@ -42,7 +42,6 @@ export const handlers = [
             const user = users.find(
                 (u) => u.email === newUser.email && u.password === newUser.password
             );
-
             if (user) {
                 return HttpResponse.json({
                     token: "mock-token-" + user.id,

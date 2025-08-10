@@ -4,10 +4,10 @@ import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
-import type { ILogin } from "./redux-features/login/types";
+import type { ILogin } from "../login/types";
 import type { AppDispatch, RootState } from "../store";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "./redux-features/login/loginUserSlice";
+import { loginUser } from "../login/loginUserSlice";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { toast } from "react-toastify";
 const LoginForm = () => {
