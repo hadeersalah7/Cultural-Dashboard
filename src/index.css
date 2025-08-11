@@ -1,33 +1,34 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 .gradient-filter {
-    background-image: linear-gradient(135deg, #2183e8, #8a2cf6);
-    opacity: 0.8;
-    right: 0;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    position: absolute;
+  background-image: linear-gradient(135deg, #2183e8, #8a2cf6);
+  opacity: 0.8;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
 }
 
-.loginBtn{
-    background-image: linear-gradient(129deg, #2183e8, #8a2cf6);
-    transition: width 0.3s;
+.loginBtn {
+  background-image: linear-gradient(129deg, #2183e8, #8a2cf6);
+  transition: width 0.3s;
 }
 
 .loginBtn:disabled {
-    background-image: linear-gradient(129deg,hsl(215, 5%, 53%), #d2d7dd);
-    cursor: not-allowed;
+  background-image: linear-gradient(129deg, hsl(215, 5%, 53%), #d2d7dd);
+  cursor: not-allowed;
 }
 
-.active-user::before{
-    position: absolute;
-    content: "";
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #18d318;
-    top: -3px;
-    left: 26px
+.active-user::before {
+  position: absolute;
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #18d318;
+  top: -3px;
+  left: 26px;
 }
 
 .user-dropdown::before {
@@ -42,13 +43,59 @@
   border-bottom: 8px solid #f1f5f9;
 }
 
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: 0.4s;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #8a2cf6;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+ 
 
 @media screen and (min-width: 800px) and (max-width: 950px) {
-    .loginBtn {
-        width: 60%;
-        transform: translateX(25%);
-    }
-    .loginLogo{
-        left: 35%
-    }
+  .loginBtn {
+    width: 60%;
+    transform: translateX(25%);
+  }
+
+  .loginLogo {
+    left: 35%;
+  }
 }
