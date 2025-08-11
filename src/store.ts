@@ -1,4 +1,4 @@
-import loginUserSlice from "./login/loginUserSlice.ts";
+import loginUserSlice from "./redux-features/login/loginUserSlice.ts";
 import { configureStore } from "@reduxjs/toolkit";
 
 const store = configureStore({

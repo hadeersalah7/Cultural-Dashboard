@@ -6,6 +6,8 @@ import RightLoginContent from "./RightLoginContent";
 import Sidebar from "./Sidebar";
 import Navlinks from "./NavLinks";
 import UserLogoutDropDown from "./UserLogoutDropDown";
+import ThemeToggler from "./ThemeToggler";
+
 
 
 export {
@@ -16,5 +18,6 @@ export {
     Navlinks,
     Navbar,
     Sidebar,
-    UserLogoutDropDown
+    UserLogoutDropDown,
+    ThemeToggler
 }

@@ -1,8 +1,8 @@
-import  { useState } from 'react'
+import { useState } from 'react'
 import type { AppDispatch } from '../store';
 import { useDispatch } from 'react-redux';
 import { AiOutlineUser } from 'react-icons/ai';
-import { logoutUser } from '../login/loginUserSlice';
+import { logoutUser } from '../redux-features/login/loginUserSlice';
 
 const UserLogoutDropDown = () => {
 

@@ -4,13 +4,13 @@ import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
-import type { ILogin } from "../login/types";
+import type { ILogin } from "../redux-features/login/types";
 import type { AppDispatch, RootState } from "../store";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../login/loginUserSlice";
+import { loginUser } from "../redux-features/login/loginUserSlice";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 const LoginForm = () => {
-    const {loading } = useSelector((state: RootState) => state.loginUser);
+    const { loading } = useSelector((state: RootState) => state.loginUser);
     const [showPass, setShowPass] = useState(false);
     const navigate = useNavigate();
     const dispatch: AppDispatch = useDispatch();
@@ -41,11 +41,11 @@ const LoginForm = () => {
     const onSubmit = async (data: ILogin) => {
         try {
             const token = await dispatch(loginUser(data));
-        if (!token) {
-            navigate("/login");
-        } else {
-            navigate("/");
-        }
+            if (!token) {
+                navigate("/login");
+            } else {
+                navigate("/");
+            }
         } catch (error) {
             console.error(error)
             navigate("/login")
