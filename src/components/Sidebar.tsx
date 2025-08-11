@@ -2,7 +2,7 @@
 
 const Sidebar = () => {
   return (
-    <div >Sidebar</div>
+    <div className="w-50">Sidebar</div>
   )
 }
 

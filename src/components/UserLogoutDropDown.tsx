@@ -16,7 +16,7 @@ const UserLogoutDropDown = () => {
             >
                 <AiOutlineUser className="text-[20px] text-white" />
             </div>
-            <span className="text-gray-500 underline decoration-solid">Hi There!</span>
+            <span className="text-gray-500 underline decoration-solid dark:text-white">Hi There!</span>
             {showDropDown && (
                 <div className="user-dropdown w-35 absolute top-11 right-6 bg-slate-100 shadow-md rounded-md p-2 z-10">
                     <button

@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import loginLogo from "../assets/login logo.png";
+import loginDark from "../assets/login logo dark.png"
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -9,8 +10,10 @@ import type { AppDispatch, RootState } from "../store";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../redux-features/login/loginUserSlice";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { DashboardContext } from "./DashboardContext";
 const LoginForm = () => {
     const { loading } = useSelector((state: RootState) => state.loginUser);
+    const {isDark} = useContext(DashboardContext)
     const [showPass, setShowPass] = useState(false);
     const navigate = useNavigate();
     const dispatch: AppDispatch = useDispatch();
@@ -53,14 +56,14 @@ const LoginForm = () => {
     };
     return (
         <div className="form-wrapper w-full max-w-[490px] min-[800px]:px-6 relative max-[700px]:px-10">
-            <div className="w-[150px] mb-15 absolute loginLogo -top-28 left-[35%] max-[700px]:left-[35%] transform -translate-y-1/2">
-                <img src={loginLogo} alt="logo" />
+            <div className="w-[150px] mb-15 absolute loginLogo -top-28 left-[35%] bg-transparent max-[700px]:left-[35%] transform -translate-y-1/2">
+                {isDark ? <img src={loginDark} alt="login-logo-dark"/> : <img src={loginLogo} alt="logo" />} 
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="input-wrapper">
                     <label
                         htmlFor="email"
-                        className="uppercase mt-12  text-gray-400 text-sm"
+                        className="uppercase mt-12  text-gray-400 text-sm dark:text-white"
                     >
                         Email
                     </label>
@@ -70,14 +73,14 @@ const LoginForm = () => {
                         id="email"
                         placeholder="johndoe@email.com"
                         className=" w-full border-b mt-3 border-gray-300 bg-transparent text-gray-400 placeholder-gray-400 focus:outline-none
-                        focus:border-[#2183e8]
+                        focus:border-[#2183e8] dark:text-white dark:placeholder:text-white
                         "
                     />
                     <p className="pt-3 text-red-600">{errors.email?.message}</p>
                 </div>
 
                 <div className="input-wrapper mt-6">
-                    <label htmlFor="Password" className="uppercase text-gray-400 text-sm">
+                    <label htmlFor="Password" className="uppercase text-gray-400 text-sm dark:text-white">
                         Password
                     </label>
                     <input
@@ -85,13 +88,13 @@ const LoginForm = () => {
                         type={showPass ? "text" : "password"}
                         placeholder="password"
                         className="w-full border-b mt-3 border-gray-300 bg-transparent text-gray-400 placeholder-gray-400 focus:outline-none
-                        focus:border-[#2183e8] 
+                        focus:border-[#2183e8] dark:text-white dark:placeholder:text-white
                         "
                         id="password"
                     />
                     <span
                         onClick={() => setShowPass((prev) => !prev)}
-                        className="text-gray-400 absolute right-7 top-[50%] transform -translate-y-1/8 cursor-pointer"
+                        className="text-gray-400 absolute dark:text-white right-7 top-[50%] transform -translate-y-1/8 cursor-pointer"
                     >
                         {showPass ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
                     </span>
