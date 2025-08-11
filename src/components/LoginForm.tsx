@@ -42,13 +42,13 @@ const LoginForm = () => {
         try {
             const token = await dispatch(loginUser(data));
         if (!token) {
-            navigate("/");
+            navigate("/login");
         } else {
-            navigate("/dashboard");
+            navigate("/");
         }
         } catch (error) {
             console.error(error)
-            navigate("/")
+            navigate("/login")
         }
     };
     return (

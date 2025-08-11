@@ -19,6 +19,30 @@
     cursor: not-allowed;
 }
 
+.active-user::before{
+    position: absolute;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #18d318;
+    top: -3px;
+    left: 26px
+}
+
+.user-dropdown::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #f1f5f9;
+}
+
+
 @media screen and (min-width: 800px) and (max-width: 950px) {
     .loginBtn {
         width: 60%;
