@@ -22,6 +22,8 @@ type LoginResponseBody = {
 };
 
 function addUser(email: string, password: string): User {
+    const existing = users.find((u) => u.email === email)
+    if (existing) return existing
     const id = Date.now();
     const newUser: User = {
         id,
