@@ -13,7 +13,7 @@ const Navbar = () => {
                 >
                     {isSidebarOpen ? <FaBarsStaggered className="text-[#8a2cf6]" /> : <FaBars className="text-[#8a2cf6]" />}
                 </button>
-                <h2 className="text-3xl text-[#8a2cf6] font-bold dark:text-white">
+                <h2 className=" min-[800px]:text-3xl text-[#8a2cf6] font-bold dark:text-white">
                     {pageTitle || "Overview"}
                 </h2>
                 <div className="flex gap-9 items-center">

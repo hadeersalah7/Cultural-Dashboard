@@ -20,7 +20,7 @@ const Sidebar = () => {
             <IoMdClose />
           </button>
           <div className="flex justify-center pt-8">
-            <h2 className="text-2xl text-white">Cultural Insights</h2>
+            <h2 className="text-2xl text-white font-bold">Cultural Insights</h2>
           </div>
 
           <Navlinks />
