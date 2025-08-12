@@ -8,9 +8,9 @@ const Sidebar = () => {
   const { isSidebarOpen, setIsSidebarOpen } = useContext(DashboardContext)
   return (
     <aside className={`${isSidebarOpen ? "max-[991px]:block max-[991px]:fixed max-[991px]:z-10" :
-      "max-[991px]:hidden"} drawer drawer open`}>
-      <div className="drawer-side">
-        <section className="bg-gradient-to-b from-[#2183e8] to-[#8a2cf6] h-full w-80 rounded-r-lg dark:bg-gradient-to-b 
+      "max-[991px]:hidden"} drawer drawer open `}>
+      <div className="drawer-side ">
+        <section className="min-h-screen bg-gradient-to-b from-[#2183e8] to-[#8a2cf6] h-full w-80 rounded-r-lg dark:bg-gradient-to-b 
         dark:from-[#1e3a8a] dark:to-[#6b21a8]">
           <button
             type="button"

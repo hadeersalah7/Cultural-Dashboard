@@ -12,7 +12,7 @@ const UserLogoutDropDown = () => {
         <div className="relative flex items-center gap-1 ">
             <div
                 onClick={() => setShowDropDown((prev) => !prev)}
-                className="active-user w-9 h-9 rounded-[50%]  bg-[#8a2cf6] flex justify-center dark:bg-[#1e3a8a] items-center cursor-pointer"
+                className="active-user w-9 h-9 rounded-[50%]  bg-[#8a2cf6] flex justify-center dark:bg-[#b58cd7] items-center cursor-pointer"
             >
                 <AiOutlineUser className="text-[20px] text-white" />
             </div>
