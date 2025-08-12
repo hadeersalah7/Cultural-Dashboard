@@ -8,8 +8,11 @@ interface IProps {
 }
 const ProtectedRoutes: React.FC<IProps> = ({ children }) => {
     const { token } = useSelector((state: RootState) => state.loginUser)
-    if (!token) {
-        localStorage.removeItem("token");
+    const loginToken = localStorage.getItem("token")
+    console.log("Redux token:", useSelector((state: RootState) => state.loginUser.token));
+    console.log("LocalStorage token:", localStorage.getItem("token"));
+
+    if (!token && !loginToken) {
         return <Navigate to="/login" />
     }
     return (
