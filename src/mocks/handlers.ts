@@ -21,13 +21,13 @@ type LoginResponseBody = {
     };
 };
 
-function addUser(email: string, password: string):User {
+function addUser(email: string, password: string): User {
     const id = Date.now();
     const newUser: User = {
         id,
         email,
-        password
-    }
+        password,
+    };
     users.push(newUser);
     return newUser;
 }
@@ -38,21 +38,25 @@ export const handlers = [
         async ({ request }) => {
             const { email, password } = await request.json();
 
-            const newUser = addUser(email, password)
-            const user = users.find(
-                (u) => u.email === newUser.email && u.password === newUser.password
+            // const newUser = addUser(email, password)
+            let user = users.find(
+                (u) => u.email === email && u.password === password
             );
-            if (user) {
+            if (!user) {
+                user = addUser(email, password);
+            } else {
+                if (user.password !== password) {
+                    return HttpResponse.json(
+                        { token: "", user: { id: 0, email: "", password: "" } },
+                        { status: 401 }
+                    );
+                }
+            }
+            
                 return HttpResponse.json({
                     token: "mock-token-" + user.id,
                     user,
                 });
-            }
-
-            return HttpResponse.json(
-                { token: "", user: { id: 0,  email: "", password: "" } },
-                { status: 401 }
-            );
         }
     ),
 ];
