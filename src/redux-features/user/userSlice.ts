@@ -3,10 +3,11 @@ import {
   createAsyncThunk,
   type PayloadAction,
 } from "@reduxjs/toolkit";
-import type { IIntialLoginState, ILogin } from "./types";
+import type { IIntialLoginState, ILogin, IPublicUser } from "./types";
 import axios from "axios";
 import { toast } from "react-toastify";
 const initialState: IIntialLoginState = {
+  id: null,
   email: "",
   password: "",
   loading: false,
@@ -24,6 +25,12 @@ export const loginUser = createAsyncThunk<
     const response = await axios.post("/login", { email, password });
     const { token } = response.data;
     localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(
+      {
+        id: response.data.user.id,
+        email: response.data.user.email
+      }
+    ))
     return token;
   } catch (error: any) {
     const errorMessage = error.response?.data?.message || "Login failed";
@@ -32,8 +39,28 @@ export const loginUser = createAsyncThunk<
   }
 });
 
+// GET USER DATA:
+export const getUserData = createAsyncThunk<
+  IPublicUser,
+  void,
+  { rejectValue: string }
+>("user/getData", async (_, thunkAPI) => {
+  try {
+    const token = localStorage.getItem("token");
+    console.log("token---", token)
+    const response = await axios.get("/me", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error:any) {
+    thunkAPI.rejectWithValue("failed to fetch user");
+  }
+});
+
 const userSlice = createSlice({
-  name: "loginUser",
+  name: "user",
   initialState,
   reducers: {
     logoutUser: (state) => {
@@ -49,6 +76,7 @@ const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    // Login Builder
     builder
       .addCase(loginUser.pending, (state) => {
         state.loading = true;
@@ -66,6 +94,16 @@ const userSlice = createSlice({
         state.loading = false;
         if (payload) toast.error(payload);
       });
+    builder.addCase(getUserData.pending, (state) => {
+      state.loading = true;
+      state.error = null
+    }).addCase(getUserData.fulfilled, (state, action) => {
+      state.loading = false
+      state.id = action.payload?.id
+    }).addCase(getUserData.rejected, (state, {payload}) => {
+      state.loading = false;
+      if (payload) toast.error(payload)
+    })
   },
 });
 

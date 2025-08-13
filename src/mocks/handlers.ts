@@ -1,9 +1,6 @@
 import { http, HttpResponse } from "msw";
-type User = {
-    password: string;
-    id: number;
-    email: string;
-};
+import type { IPublicUser, User } from "../redux-features/user/types";
+
 
 const users: User[] = [];
 
@@ -61,15 +58,19 @@ export const handlers = [
             });
         }
     ),
-    http.get<{}, {}, User | null>("/me", ({ request }) => {
-        const authHeader = request.headers.get("Authorization"); 
-        const token = authHeader?.split(" ")[1]; 
-        const userId = Number(token?.split("-")[2]);
-
-        const user = users.find((u) => u.id === userId);
-
+    http.get<{}, {}, IPublicUser | null>("/me", ({ request }) => {
+        // const authHeader = request.headers.get("Authorization"); 
+        // const token = authHeader?.split(" ")[1];
+        // const userId = Number(token?.split("-")[2]);
+        // const user = users.find((u) => u.id === userId);
+        const userString = localStorage.getItem("user")
+        const user = userString ? JSON.parse(userString) as User : null
         if (user) {
-            return HttpResponse.json(user);
+            const publicUser: IPublicUser = {
+                email: user.email,
+                id: user.id
+            }
+            return HttpResponse.json(publicUser);
         }
 
         return HttpResponse.json(null, { status: 401 });

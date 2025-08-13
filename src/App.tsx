@@ -4,10 +4,16 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { ProtectedRoutes } from "./components";
 import { Dashboard, Layout, Login } from "./pages";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "./store";
+import { getUserData } from "./redux-features/user/userSlice";
 
 function App() {
-
-
+const dispatch = useDispatch<AppDispatch>()
+  useEffect(() => {
+  dispatch(getUserData())
+}, [])
   return (
     <>
       <Router>

@@ -4,9 +4,19 @@ export interface ILogin {
 }
 
 export interface IIntialLoginState {
+    id: number | null;
     email: string;
     password: string;
     loading: boolean;
     error: null;
-    token: string
+    token: string;
 }
+
+export type User = {
+    password: string;
+    id: number;
+    email: string;
+};
+
+
+export type IPublicUser = Omit<User, "password">
