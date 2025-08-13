@@ -3,7 +3,7 @@ import { LoginForm, RightLoginContent } from "../components";
 const Login = () => {
     return (
         <main className="flex justify-between min-h-screen w-full">
-            <div className="left max-[750px]:w-full w-[50%] flex items-center justify-center">
+            <div className="left max-[800px]:w-full w-[50%] flex items-center justify-center">
                 <LoginForm />
             </div>
             <section

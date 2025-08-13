@@ -6,17 +6,20 @@ const Navbar = () => {
     const { pageTitle, isSidebarOpen, setIsSidebarOpen } = useContext(DashboardContext);
     return (
         <nav className="h-24 pt-10">
-            <div className="flex justify-between items-center w-full px-20 max-w-[1440px] mx-auto">
-                <button
-                    className="cursor-pointer min-[991px]:hidden -translate-x-[50px]"
+            <div className="flex justify-between items-center w-full min-[285px]:pl-6 lg:px-20 max-w-[1440px] mx-auto">
+                <div className="flex items-center">
+                    <button
+                    className="cursor-pointer min-[991px]:hidden min-[285px]:pr-2"
                     onClick={() => setIsSidebarOpen((prev) => !prev)}
                 >
                     {isSidebarOpen ? <FaBarsStaggered className="text-[#8a2cf6]" /> : <FaBars className="text-[#8a2cf6]" />}
                 </button>
-                <h2 className=" min-[800px]:text-3xl text-[#8a2cf6] font-bold dark:text-white">
+                <h2 className=" min-[550px]:text-3xl text-[#8a2cf6] font-bold dark:text-white">
                     {pageTitle || "Overview"}
                 </h2>
-                <div className="flex gap-9 items-center">
+                </div>
+                
+                <div className="flex min-[300px]:gap-3 lg:gap-9 items-center min-[285px]:pr-4 md:pr-12">
                     <UserLogoutDropDown />
                     <ThemeToggler />
                 </div>

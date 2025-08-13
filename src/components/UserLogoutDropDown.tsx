@@ -9,14 +9,14 @@ const UserLogoutDropDown = () => {
     const [showDropDown, setShowDropDown] = useState<boolean>(false)
     const dispatch = useDispatch<AppDispatch>();
     return (
-        <div className="relative flex items-center gap-1 ">
+        <div className="relative flex items-center lg:gap-1 min-[285px]:pr-2">
             <div
                 onClick={() => setShowDropDown((prev) => !prev)}
                 className="active-user w-9 h-9 rounded-[50%]  bg-[#8a2cf6] flex justify-center dark:bg-[#b58cd7] items-center cursor-pointer"
             >
                 <AiOutlineUser className="text-[20px] text-white" />
             </div>
-            <span className="text-gray-500 underline decoration-solid dark:text-white">Hi There!</span>
+            <span className="text-gray-500 underline decoration-solid dark:text-white md:block min-[285px]:hidden">Hi There!</span>
             {showDropDown && (
                 <div className="user-dropdown w-35 absolute top-11 right-6 bg-slate-100 shadow-md rounded-md p-2 z-10">
                     <button

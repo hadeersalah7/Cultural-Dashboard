@@ -56,7 +56,7 @@ const LoginForm = () => {
     };
     return (
         <div className="form-wrapper w-full max-w-[490px] min-[800px]:px-6 relative max-[700px]:px-10">
-            <div className="w-[150px] mb-15 absolute loginLogo -top-28 left-[35%] bg-transparent max-[700px]:left-[35%] transform -translate-y-1/2">
+            <div className="w-[150px] mb-15 absolute loginLogo -top-28 left-[35%] bg-transparent min-[280px]:left-[25%] min-[338px]:left-[35%] transform -translate-y-1/2">
                 {isDark ? <img src={loginDark} alt="login-logo-dark"/> : <img src={loginLogo} alt="logo" />} 
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>

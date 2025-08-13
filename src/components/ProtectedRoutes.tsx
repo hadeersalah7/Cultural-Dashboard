@@ -13,7 +13,7 @@ const ProtectedRoutes: React.FC<IProps> = ({ children }) => {
     console.log("LocalStorage token:", localStorage.getItem("token"));
 
     if (!token && !loginToken) {
-        return <Navigate to="/login" />
+        return <Navigate to="login" replace />;
     }
     return (
         <div>{children}</div>

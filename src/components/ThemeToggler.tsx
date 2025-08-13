@@ -8,11 +8,11 @@ const ThemeToggler = () => {
         setIsDark((prev) => !prev)
     }
     return (
-        <div className="theme-toggle flex justify-center items-center gap-2 cursor-pointer">
-            <span className="text-xl text-[#8a2cf6] dark:text-white">{isDark ? <BiSun /> : <BiMoon />}</span>
+        <div className="theme-toggle flex justify-center items-center lg:gap-2 cursor-pointer">
+            <span className="text-xl text-[#8a2cf6] dark:text-white md:pr-2 lg:p-0" onClick={handleThemeToggler}>{isDark ? <BiSun /> : <BiMoon />}</span>
             <label className="switch ">
                 <input type="checkbox" onChange={handleThemeToggler}/>
-                <span className="slider round"></span>
+                <span className="slider round min-[285px]:hidden md:block"></span>
             </label>
         </div>
 
