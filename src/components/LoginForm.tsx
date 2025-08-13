@@ -1,19 +1,19 @@
 import { useContext, useEffect, useState } from "react";
 import loginLogo from "../assets/login logo.png";
-import loginDark from "../assets/login logo dark.png"
+import loginDark from "../assets/login logo dark.png";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
-import type { ILogin } from "../redux-features/login/types";
+import type { ILogin } from "../redux-features/user/types";
 import type { AppDispatch, RootState } from "../store";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../redux-features/login/loginUserSlice";
+import { loginUser } from "../redux-features/user/userSlice";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { DashboardContext } from "./DashboardContext";
 const LoginForm = () => {
     const { loading } = useSelector((state: RootState) => state.loginUser);
-    const {isDark} = useContext(DashboardContext)
+    const { isDark } = useContext(DashboardContext);
     const [showPass, setShowPass] = useState(false);
     const navigate = useNavigate();
     const dispatch: AppDispatch = useDispatch();
@@ -35,7 +35,7 @@ const LoginForm = () => {
         register,
         formState: { errors },
         handleSubmit,
-        watch
+        watch,
     } = useForm({ resolver: yupResolver(validationSchema) });
 
     const email = watch("email");
@@ -50,14 +50,18 @@ const LoginForm = () => {
                 navigate("/");
             }
         } catch (error) {
-            console.error(error)
-            navigate("/login")
+            console.error(error);
+            navigate("/login");
         }
     };
     return (
         <div className="form-wrapper w-full max-w-[490px] min-[800px]:px-6 relative max-[700px]:px-10">
             <div className="w-[150px] mb-15 absolute loginLogo -top-28 left-[35%] bg-transparent min-[280px]:left-[25%] min-[338px]:left-[35%] transform -translate-y-1/2">
-                {isDark ? <img src={loginDark} alt="login-logo-dark"/> : <img src={loginLogo} alt="logo" />} 
+                {isDark ? (
+                    <img src={loginDark} alt="login-logo-dark" />
+                ) : (
+                    <img src={loginLogo} alt="logo" />
+                )}
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="input-wrapper">
@@ -80,7 +84,10 @@ const LoginForm = () => {
                 </div>
 
                 <div className="input-wrapper mt-6">
-                    <label htmlFor="Password" className="uppercase text-gray-400 text-sm dark:text-white">
+                    <label
+                        htmlFor="Password"
+                        className="uppercase text-gray-400 text-sm dark:text-white"
+                    >
                         Password
                     </label>
                     <input
@@ -107,7 +114,11 @@ const LoginForm = () => {
                 text-white font-bold tracking-widest rounded-[40px] h-[50px] justify-center items-center cursor-pointer  transition-all duration-300`}
                     disabled={!email || !password || loading}
                 >
-                    {loading ? <span className="loading loading-ring loading-lg" /> : "Login"}
+                    {loading ? (
+                        <span className="loading loading-ring loading-lg" />
+                    ) : (
+                        "Login"
+                    )}
                 </button>
             </form>
         </div>

@@ -22,8 +22,8 @@ type LoginResponseBody = {
 };
 
 function addUser(email: string, password: string): User {
-    const existing = users.find((u) => u.email === email)
-    if (existing) return existing
+    const existing = users.find((u) => u.email === email);
+    if (existing) return existing;
     const id = Date.now();
     const newUser: User = {
         id,
@@ -54,11 +54,24 @@ export const handlers = [
                     );
                 }
             }
-            
-                return HttpResponse.json({
-                    token: "mock-token-" + user.id,
-                    user,
-                });
+
+            return HttpResponse.json({
+                token: "mock-token-" + user.id,
+                user,
+            });
         }
     ),
+    http.get<{}, {}, User | null>("/me", ({ request }) => {
+        const authHeader = request.headers.get("Authorization"); 
+        const token = authHeader?.split(" ")[1]; 
+        const userId = Number(token?.split("-")[2]);
+
+        const user = users.find((u) => u.id === userId);
+
+        if (user) {
+            return HttpResponse.json(user);
+        }
+
+        return HttpResponse.json(null, { status: 401 });
+    }),
 ];

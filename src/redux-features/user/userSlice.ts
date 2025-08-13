@@ -14,6 +14,7 @@ const initialState: IIntialLoginState = {
   token: "",
 };
 
+// LOGIN THUNK API:
 export const loginUser = createAsyncThunk<
   string,
   ILogin,
@@ -31,7 +32,7 @@ export const loginUser = createAsyncThunk<
   }
 });
 
-const loginUserSlice = createSlice({
+const userSlice = createSlice({
   name: "loginUser",
   initialState,
   reducers: {
@@ -68,6 +69,6 @@ const loginUserSlice = createSlice({
   },
 });
 
-export const { logoutUser, retrieveToken } = loginUserSlice.actions;
+export const { logoutUser, retrieveToken } = userSlice.actions;
 
-export default loginUserSlice.reducer;
+export default userSlice.reducer;
