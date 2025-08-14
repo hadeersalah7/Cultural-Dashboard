@@ -1,6 +1,8 @@
-import { useSelector } from "react-redux";
-import type { RootState } from "../store";
-import { Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "../store";
+import { logoutUser } from "../redux-features/user/userSlice";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 
 interface IProps {
@@ -8,13 +10,17 @@ interface IProps {
 }
 const ProtectedRoutes: React.FC<IProps> = ({ children }) => {
     const { token } = useSelector((state: RootState) => state.loginUser)
+    const dispatch = useDispatch<AppDispatch>()
+    const navigate = useNavigate()
     const loginToken = localStorage.getItem("token")
 
-    if (!token && !loginToken) {
-        localStorage.removeItem("token")
-        localStorage.removeItem("user")
-        window.location.href = "/login"
-    }
+    useEffect(() => {
+        if (!token && !loginToken) {
+            dispatch(logoutUser())
+            navigate("/login")
+        }
+    }, [token, loginToken])
+
     return (
         <div>{children}</div>
     )

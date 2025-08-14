@@ -58,7 +58,7 @@ export const handlers = [
             });
         }
     ),
-    http.get<{}, {}, IPublicUser | null>("/me", ({ request }) => {
+    http.get<{}, {}, IPublicUser | null>("/me", () => {
         // const authHeader = request.headers.get("Authorization"); 
         // const token = authHeader?.split(" ")[1];
         // const userId = Number(token?.split("-")[2]);

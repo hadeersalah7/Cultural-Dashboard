@@ -47,7 +47,6 @@ export const getUserData = createAsyncThunk<
 >("user/getData", async (_, thunkAPI) => {
   try {
     const token = localStorage.getItem("token");
-    console.log("token---", token)
     const response = await axios.get("/me", {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -70,6 +69,7 @@ const userSlice = createSlice({
       state.loading = false;
       state.error = null;
       localStorage.removeItem("token");
+      localStorage.removeItem("user")
     },
     retrieveToken: (state, action: PayloadAction<string>) => {
       state.token = action.payload;
