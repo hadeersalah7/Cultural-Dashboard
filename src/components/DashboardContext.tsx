@@ -7,7 +7,9 @@ interface IDashboardContextProps {
     isSidebarOpen: boolean;
     setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>
     isDark: boolean; 
-    setIsDark: React.Dispatch<React.SetStateAction<boolean>>
+    setIsDark: React.Dispatch<React.SetStateAction<boolean>>;
+    toggleSidebar: boolean;
+    setToggleSidebar: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const DashboardContext = createContext<IDashboardContextProps>({
@@ -16,7 +18,9 @@ export const DashboardContext = createContext<IDashboardContextProps>({
     isSidebarOpen: true,
     setIsSidebarOpen: () => { },
     isDark: false,
-    setIsDark: () => {}
+    setIsDark: () => { },
+    toggleSidebar: false,
+    setToggleSidebar: () => {}
 
 })
 
@@ -24,7 +28,7 @@ export const DashboardContextProvider: React.FC<React.PropsWithChildren<{}>> = (
     const [pageTitle, setPageTitle] = useState<string>("")
     const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true)
     const [isDark, setIsDark] = useState<boolean>(false)
-
+    const [toggleSidebar, setToggleSidebar] = useState<boolean>(false)
     useEffect(() => {
         const savedTheme = localStorage.getItem("theme")
         if (savedTheme === "dark") {
@@ -51,7 +55,9 @@ export const DashboardContextProvider: React.FC<React.PropsWithChildren<{}>> = (
         isSidebarOpen,
         setIsSidebarOpen,
         isDark,
-        setIsDark
+        setIsDark,
+        toggleSidebar,
+        setToggleSidebar
     }
 
     return (

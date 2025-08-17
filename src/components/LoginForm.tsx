@@ -47,7 +47,7 @@ const LoginForm = () => {
             if (!token) {
                 navigate("/login");
             } else {
-                navigate("/");
+                navigate("/dashboard");
             }
         } catch (error) {
             console.error(error);

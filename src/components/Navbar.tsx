@@ -9,7 +9,7 @@ const Navbar = () => {
             <div className="flex justify-between items-center w-full min-[285px]:pl-6 lg:px-20 max-w-[1440px] mx-auto">
                 <div className="flex items-center">
                     <button
-                    className="cursor-pointer min-[800px]:hidden min-[285px]:pr-2"
+                    className="cursor-pointer min-[966px]:hidden min-[285px]:pr-5"
                     onClick={() => setIsSidebarOpen((prev) => !prev)}
                 >
                     {isSidebarOpen ? <FaBarsStaggered className="text-[#8a2cf6]" /> : <FaBars className="text-[#8a2cf6]" />}
