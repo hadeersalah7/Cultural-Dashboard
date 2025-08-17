@@ -9,7 +9,7 @@ const Navbar = () => {
             <div className="flex justify-between items-center w-full min-[285px]:pl-6 lg:px-20 max-w-[1440px] mx-auto">
                 <div className="flex items-center">
                     <button
-                    className="cursor-pointer min-[991px]:hidden min-[285px]:pr-2"
+                    className="cursor-pointer min-[800px]:hidden min-[285px]:pr-2"
                     onClick={() => setIsSidebarOpen((prev) => !prev)}
                 >
                     {isSidebarOpen ? <FaBarsStaggered className="text-[#8a2cf6]" /> : <FaBars className="text-[#8a2cf6]" />}
@@ -19,7 +19,7 @@ const Navbar = () => {
                 </h2>
                 </div>
                 
-                <div className="flex min-[300px]:gap-3 lg:gap-9 items-center min-[285px]:pr-4 md:pr-12">
+                <div className="flex min-[300px]:gap-3 lg:gap-9 items-center min-[285px]:pr-4 md:pr-0">
                     <UserLogoutDropDown />
                     <ThemeToggler />
                 </div>

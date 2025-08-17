@@ -21,7 +21,7 @@ export const Links: ILinks[] = [
     {
         id: 1,
         text: "Overview",
-        path: "/",
+        path: "/dashboard",
         icon: <FcList style={iconStyle}/>
     },
     {
