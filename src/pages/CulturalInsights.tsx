@@ -1,25 +1,51 @@
 import { LiaAngleRightSolid } from "react-icons/lia";
 import { WatchDashboardVideos } from "../components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 function CulutralInsights() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [video, setVideo] = useState<any[]>([]);
+  const [currentIndex, setCurrentIndex] = useState<number>(0)
+  useEffect(() => {
+    generateCulturalVideos();
+  }, []);
+
+  const generateCulturalVideos = async (): Promise<void> => {
+    try {
+      const response = await axios.get(
+        "https://pixabay.com/api/videos/?key=51844135-d87b70ce49b8a1466f0e9c805&q=culture&per_page=10"
+      );
+      const hits = response.data.hits;
+      setVideo(hits);
+      setCurrentIndex(0)
+      console.log("response", response.data);
+    } catch (error) {
+      toast.error("Could not fetch videos");
+    }
+  };
+
+  const currentVideo = video[currentIndex]
+  const thumbnail = currentVideo?.videos?.tiny?.thumbnail
+  const videoUrl = currentVideo?.videos?.large?.url
+
+  const handleNextVideo = ():void => {
+    setCurrentIndex((prev) => (prev + 1) % video.length)
+  }
   return (
     <>
-      <div className="card bg-base-100 dark:bg-[#28264f] min-[285px]:w-full lg:w-96 shadow-sm px-7 rounded-xl">
+      <div className="card bg-base-100 dark:bg-[#28264f] min-[285px]:w-xs min-[285px]:mx-auto lg:w-96 shadow-sm px-7 rounded-xl">
         <figure>
           <figcaption className="py-3 flex items-center justify-between">
             <h1 className="text-lg font-bold text-gray-600 dark:text-white">
               Cultural Insights
             </h1>
-            <span className="text-gray-500 cursor-pointer dark:text-white">
+            <span className="text-gray-500 cursor-pointer dark:text-white" title="next video" onClick={handleNextVideo}>
               <LiaAngleRightSolid />
             </span>
           </figcaption>
-          <img
-            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-            alt="Shoes"
-          />
+          <img src={thumbnail} alt="cultural-content" />
         </figure>
         <div className="card-body py-5">
           <h2 className="card-title text-xl">Promoting Cultural Hertiage</h2>
@@ -43,6 +69,7 @@ function CulutralInsights() {
       <WatchDashboardVideos
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
+        videos={videoUrl}
       />
     </>
   );

@@ -95,7 +95,7 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-@media screen and (min-width:285px) and (max-width:767px){
+@media screen and (min-width:100px) and (max-width:767px){
   .switch{
     display: none;
   }

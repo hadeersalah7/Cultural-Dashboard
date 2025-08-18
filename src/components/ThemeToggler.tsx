@@ -11,8 +11,8 @@ const ThemeToggler = () => {
         <div className="theme-toggle flex justify-center items-center lg:gap-2 cursor-pointer">
             <span className="text-xl text-[#8a2cf6] dark:text-white md:pr-2 lg:p-0" onClick={handleThemeToggler}>{isDark ? <BiSun /> : <BiMoon />}</span>
             <label className="switch ">
-                <input type="checkbox" onChange={handleThemeToggler}/>
-                <span className="slider round min-[285px]:hidden md:block"></span>
+                <input type="checkbox" checked={isDark} onChange={handleThemeToggler}/>
+                <span className="slider round min-[100px]:hidden md:block"></span>
             </label>
         </div>
 
