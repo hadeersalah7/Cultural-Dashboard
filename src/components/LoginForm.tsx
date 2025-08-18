@@ -12,7 +12,7 @@ import { loginUser } from "../redux-features/user/userSlice";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { DashboardContext } from "./DashboardContext";
 const LoginForm = () => {
-    const { loading } = useSelector((state: RootState) => state.loginUser);
+    const loading = useSelector((state: RootState) => state.loginUser.loading);
     const { isDark } = useContext(DashboardContext);
     const [showPass, setShowPass] = useState(false);
     const navigate = useNavigate();
