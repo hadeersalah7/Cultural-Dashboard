@@ -1,31 +1,18 @@
-import React from "react";
-
+import { Modal } from "antd"
 interface IProps {
     isModalOpen: boolean;
-    setIsModalopen: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const WatchDashboardVideos: React.FC<IProps> = ({
-    isModalOpen,
-    setIsModalopen,
-}) => {
+const WatchDashboardVideos: React.FC<IProps> = ({ isModalOpen, setIsModalOpen }) => {
+    const onCancel = () => {
+        setIsModalOpen(false)
+    }
+
     return (
-        <>
-            {isModalOpen && (
-                <dialog className="modal">
-                    <div className="modal-box">
-                        <form method="dialog">
-                            <button
-                                className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-                                onClick={() => setIsModalopen(false)}
-                            >
-                                ✕
-                            </button>
-                        </form>
-                    </div>
-                </dialog>
-            )}
-        </>
+        <Modal open={isModalOpen} footer={null} onCancel={onCancel} closable={true}>
+
+        </Modal>
     );
 };
 

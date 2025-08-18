@@ -19,6 +19,9 @@
   transition: width 0.3s;
 }
 
+.dark .loginBtn {
+  background-image: linear-gradient(129deg, #1e3a8a, #6b21a8);
+}
 .loginBtn:disabled {
   background-image: linear-gradient(129deg, hsl(215, 5%, 53%), #d2d7dd);
   cursor: not-allowed;

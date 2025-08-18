@@ -29,8 +29,10 @@ function CulutralInsights() {
           </p>
           <div className="card-actions justify-start pt-2">
             <button
-              className="btn loginBtn text-white w-[120px] h-[40px] rounded-lg cursor-pointer"
-              onClick={() => setIsModalOpen(true)}
+              className="btn loginBtn text-white w-[120px] h-[40px] rounded-lg cursor-pointer dark:from-[#1e3a8a] dark:to-[#6b21a8]"
+              onClick={() => {
+                setIsModalOpen(true);
+              }}
             >
               Watch
             </button>
@@ -40,7 +42,7 @@ function CulutralInsights() {
 
       <WatchDashboardVideos
         isModalOpen={isModalOpen}
-        setIsModalopen={setIsModalOpen}
+        setIsModalOpen={setIsModalOpen}
       />
     </>
   );
