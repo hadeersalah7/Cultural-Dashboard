@@ -32,9 +32,10 @@ function CulutralInsights() {
   const handleNextVideo = (): void => {
     setCurrentIndex((prev) => (prev + 1) % video.length);
   };
+  const isCulturalInsightsPage = window.location.href.includes("cultural-insights")
   return (
     <>
-      <div className="card bg-base-100 dark:bg-[#28264f] min-[285px]:w-xs min-[285px]:mx-auto lg:w-96 shadow-sm px-7 rounded-xl">
+      <div className={`${isCulturalInsightsPage ? "xl:w-xl" : ""} card bg-base-100 dark:bg-[#28264f] min-[285px]:w-xs min-[285px]:mx-auto min-[500px]:w-lg lg:w-96 shadow-sm px-7 rounded-xl`}>
         <figure>
           <figcaption className="py-3 flex items-center justify-between">
             <h1 className="text-lg font-bold text-gray-600 dark:text-white">

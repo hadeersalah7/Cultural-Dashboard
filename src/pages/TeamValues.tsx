@@ -19,9 +19,9 @@ const TeamValues = () => {
     { value: "Creativity", score: 65 },
     { value: "Discipline", score: 75 },
   ];
-
+  const isTeamValuesPage = window.location.href.includes("team-values");
   return (
-    <section className="card bg-base-100 shadow-sm dark:bg-[#28264f]  min-[285px]:w-xs min-[285px]:mx-auto lg:w-120 rounded-xl py-5">
+    <section className={`${isTeamValuesPage ? "lg:w-[90%]" : ""} card bg-base-100 shadow-sm dark:bg-[#28264f]  min-[285px]:w-xs min-[500px]:w-md min-[600px]:w-lg min-[285px]:mx-auto lg:w-120 rounded-xl py-5`}>
       <div className="card-body px-7">
         <h2 className="card-title text-xl dark:text-white text-gray-600">
           Team Values
