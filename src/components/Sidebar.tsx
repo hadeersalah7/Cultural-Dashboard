@@ -5,22 +5,20 @@ import { IoMdClose } from "react-icons/io";
 import { Navlinks } from ".";
 
 const Sidebar = () => {
-  const { isSidebarOpen, toggleSidebar,setToggleSidebar ,setIsSidebarOpen } =
+  const { isSidebarOpen, toggleSidebar, setToggleSidebar, setIsSidebarOpen } =
     useContext(DashboardContext);
   return (
     <aside
-      className={`${
-        isSidebarOpen
+      className={`${isSidebarOpen
           ? "max-[991px]:block max-[991px]:fixed max-[991px]:z-10"
-          : "max-[991px]:hidden"
-      } drawer drawer open `}
+          : "max-[1025px]:hidden"
+        } drawer drawer open `}
     >
       <div className="drawer-side ">
         <section
           className={`min-h-screen bg-gradient-to-b from-[#2183e8] to-[#8a2cf6] h-full  rounded-r-lg dark:bg-gradient-to-b 
-        dark:from-[#1e3a8a] dark:to-[#6b21a8] ${
-          toggleSidebar ? "w-20" : "w-80"
-        }`}
+        dark:from-[#1e3a8a] dark:to-[#6b21a8] ${toggleSidebar ? "w-20" : "w-75"
+            }`}
         >
           <button
             type="button"
@@ -42,9 +40,8 @@ const Sidebar = () => {
           </div>
           <div className="flex justify-center pt-8">
             <h2
-              className={`text-2xl text-white font-bold ${
-                toggleSidebar ? "hidden" : "block"
-              }`}
+              className={`text-2xl text-white font-bold ${toggleSidebar ? "hidden" : "block"
+                }`}
             >
               Cultural Insights
             </h2>
