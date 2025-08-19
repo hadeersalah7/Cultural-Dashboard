@@ -23,7 +23,7 @@ const NavLinks = () => {
           <span className="text-xl ml-4 grid items-center px-2.5">
             {l.icon}
           </span>
-          <span className={`${toggleSidebar ? "hidden" : ""}`}>{l.text}</span>
+          <span className={`${toggleSidebar ? "hidden" : ""}`} title={l.text}>{l.text}</span>
         </NavLink>
       ))}
     </section>

@@ -1,6 +1,6 @@
 import { http, HttpResponse } from "msw";
 import type { IPublicUser, User } from "../redux-features/user/types";
-
+import { hits } from "../utils/hits";
 
 const users: User[] = [];
 
@@ -59,20 +59,27 @@ export const handlers = [
         }
     ),
     http.get<{}, {}, IPublicUser | null>("/me", () => {
-        // const authHeader = request.headers.get("Authorization"); 
+        // const authHeader = request.headers.get("Authorization");
         // const token = authHeader?.split(" ")[1];
         // const userId = Number(token?.split("-")[2]);
         // const user = users.find((u) => u.id === userId);
-        const userString = localStorage.getItem("user")
-        const user = userString ? JSON.parse(userString) as User : null
+        const userString = localStorage.getItem("user");
+        const user = userString ? (JSON.parse(userString) as User) : null;
         if (user) {
             const publicUser: IPublicUser = {
                 email: user.email,
-                id: user.id
-            }
+                id: user.id,
+            };
             return HttpResponse.json(publicUser);
         }
-
         return HttpResponse.json(null, { status: 401 });
+    }),
+    http.get<{}, {}>("https://pixabay.com/api/videos", ({ request }) => {
+        const url = new URL(request.url);
+        const query = url.searchParams.get("q");
+        const perPage = url.searchParams.get("per_page");
+        return HttpResponse.json({
+            hits
+        });
     }),
 ];

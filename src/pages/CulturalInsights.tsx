@@ -18,6 +18,7 @@ function CulutralInsights() {
         "https://pixabay.com/api/videos/?key=51844135-d87b70ce49b8a1466f0e9c805&q=culture&per_page=10"
       );
       const hits = response.data.hits;
+      console.log("response.data: ",response.data)
       setVideo(hits);
       setCurrentIndex(0);
     } catch (error) {
@@ -26,16 +27,16 @@ function CulutralInsights() {
   };
 
   const currentVideo = video[currentIndex];
-  const thumbnail = currentVideo?.videos?.tiny?.thumbnail;
+  const thumbnail = currentVideo?.videos?.medium?.thumbnail;
   const videoUrl = currentVideo?.videos?.large?.url;
-
+  const videoTags = currentVideo?.tags
   const handleNextVideo = (): void => {
     setCurrentIndex((prev) => (prev + 1) % video.length);
   };
   const isCulturalInsightsPage = window.location.href.includes("cultural-insights")
   return (
     <>
-      <div className={`${isCulturalInsightsPage ? "xl:w-xl" : ""} card bg-base-100 dark:bg-[#28264f] min-[285px]:w-xs min-[285px]:mx-auto min-[500px]:w-lg lg:w-96 shadow-sm px-7 rounded-xl`}>
+      <div className={`${isCulturalInsightsPage ? "xl:w-xl" : ""} card bg-base-100 dark:bg-[#28264f] min-[285px]:w-xs min-[285px]:mx-auto min-[523px]:w-lg lg:w-96 shadow-sm px-7 rounded-xl`}>
         <figure>
           <figcaption className="py-3 flex items-center justify-between">
             <h1 className="text-lg font-bold text-gray-600 dark:text-white">
@@ -49,13 +50,12 @@ function CulutralInsights() {
               <LiaAngleRightSolid />
             </span>
           </figcaption>
-          <img src={thumbnail} alt="cultural-content" />
+          <img src={thumbnail} alt="cultural-content" loading="lazy"/>
         </figure>
         <div className="card-body py-5">
           <h2 className="card-title text-xl">Promoting Cultural Hertiage</h2>
-          <p className="pt-3">
-            A powerful message about how sharing cultural heritage connects
-            humanity
+          <p className="pt-3 pb-1">
+            {videoTags}.
           </p>
           <div className="card-actions justify-start pt-2">
             <button
@@ -63,6 +63,7 @@ function CulutralInsights() {
               onClick={() => {
                 setIsModalOpen(true);
               }}
+              title="Watch"
             >
               Watch
             </button>
