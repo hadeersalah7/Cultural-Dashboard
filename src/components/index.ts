@@ -10,7 +10,8 @@ import ThemeToggler from "./ThemeToggler";
 import WatchDashboardVideos from "./WatchDashboardVideos";
 import TeamValuesChart from "./TeamValuesChart";
 import LoadingSpiner from "./LoadingSpiner";
-
+import AddEvent from "./AddEvent";
+import AddEventModal from "./AddEventModal";
 export {
     LoginForm,
     RightLoginContent,
@@ -23,5 +24,7 @@ export {
     ThemeToggler,
     WatchDashboardVideos,
     TeamValuesChart,
-    LoadingSpiner
+    LoadingSpiner,
+    AddEvent,
+    AddEventModal
 }
