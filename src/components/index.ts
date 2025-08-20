@@ -8,8 +8,8 @@ import Navlinks from "./NavLinks";
 import UserLogoutDropDown from "./UserLogoutDropDown";
 import ThemeToggler from "./ThemeToggler";
 import WatchDashboardVideos from "./WatchDashboardVideos";
-
-
+import TeamValuesChart from "./TeamValuesChart";
+import LoadingSpiner from "./LoadingSpiner";
 
 export {
     LoginForm,
@@ -21,5 +21,7 @@ export {
     Sidebar,
     UserLogoutDropDown,
     ThemeToggler,
-    WatchDashboardVideos
+    WatchDashboardVideos,
+    TeamValuesChart,
+    LoadingSpiner
 }
