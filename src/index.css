@@ -95,6 +95,53 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
+
+/* Dark Calendar: */
+.dark-calendar .ant-picker-panel {
+  background-color: #28264f !important;
+  color: white !important;
+}
+
+.dark-calendar .ant-picker-cell {
+  color: white !important;
+}
+
+.dark-calendar .ant-picker-header {
+  color: white !important;
+  background-color: #28264f !important;
+}
+
+.dark-calendar .ant-picker-content th {
+  color: white !important;
+}
+.dark-calendar .ant-picker-calendar{
+  background: #28264f !important;
+}
+
+.dark-calendar .ant-select-selector{
+  background-color: #6b21a8 !important;
+  color: #ffff !important;
+  border: none !important;
+}
+
+.dark-calendar .ant-select-dropdown{
+  background-color: #6b21a8 !important;
+  color: #ffff !important;
+}
+
+.dark-calendar .ant-radio-group .ant-radio-button-wrapper{
+  background-color: #6b21a8 !important;
+  border: none !important;
+}
+
+.dark-calendar .ant-picker-cell-selected .ant-picker-cell-inner {
+  background-color: #6b21a8 !important;
+  color: #ffff !important;
+  border-radius: 4px;
+}
+
+/* ----------------------------------------------------------------------- */
+
 @media screen and (min-width:100px) and (max-width:767px){
   .switch{
     display: none;
