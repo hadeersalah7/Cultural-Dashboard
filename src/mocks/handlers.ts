@@ -1,8 +1,11 @@
 import { http, HttpResponse } from "msw";
-import type { IPublicUser, User } from "../redux-features/user/types";
+import type { IEvent, IPublicUser, User } from "../redux-features/user/types";
 import { hits } from "../utils/hits";
 
 const users: User[] = [];
+
+// Used To Save Created Event
+let events: { name: string; date: string }[] = [];
 
 type LoginRequestBody = {
     email: string;
@@ -84,10 +87,19 @@ export const handlers = [
         const query = url.searchParams.get("q");
         // const perPage = url.searchParams.get("per_page");
         return HttpResponse.json({
-            hits
+            hits,
         });
     }),
 
-    // THE ADD EVENT API: 
-    
+    // THE ADD EVENT API:
+    http.post<IEvent, IEvent>("/api/createEvent", async ({ request }) => {
+        const body: IEvent = await request.json();
+        events.push(body);
+        return HttpResponse.json({ success: true, event: body });
+    }),
+
+    //GET ALL THE EVENTS:
+    http.get<{}, { events: IEvent[] }>("/api/events", () => {
+        return HttpResponse.json({ events });
+    }),
 ];
