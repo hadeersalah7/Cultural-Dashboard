@@ -142,6 +142,51 @@ input:checked + .slider:before {
 
 /* ----------------------------------------------------------------------- */
 
+/* DARK MODAL: */
+.dark-modal .ant-modal-content{
+  background-color: #28264f !important;
+}
+
+.dark-modal .ant-modal-title{
+  color: #ffff;
+  background-color: #28264f !important;
+}
+
+.dark-modal label{
+  color: #ffff !important;
+}
+
+.dark-modal .ant-input{
+  background-color: #b58cd7;
+}
+
+.dark-modal .ant-picker{
+  background-color: #b58cd7;
+}
+
+.dark-modal .ant-picker-panel-container .ant-picker-date-panel-container{
+  background: #6b21a8 !important;
+}
+
+.dark-mode .ant-picker-dropdown .ant-picker-panel-container {
+  background-color: #6b21a8 !important;
+  color: white !important;
+}
+
+.dark-mode .ant-picker-dropdown .ant-picker-cell {
+  color: white !important;
+}
+
+.dark-mode .ant-picker-dropdown .ant-picker-header {
+  background-color: #6b21a8 !important;
+  color: white !important;
+}
+
+.dark-mode .ant-picker-dropdown .ant-picker-content th {
+  color: white !important;
+}
+
+
 @media screen and (min-width:100px) and (max-width:767px){
   .switch{
     display: none;

@@ -32,6 +32,7 @@ function addUser(email: string, password: string): User {
 }
 
 export const handlers = [
+    // LOGIN API:
     http.post<{}, LoginRequestBody, LoginResponseBody>(
         "/login",
         async ({ request }) => {
@@ -58,6 +59,8 @@ export const handlers = [
             });
         }
     ),
+
+    // GET EMAIL & PASSWORD API:
     http.get<{}, {}, IPublicUser | null>("/me", () => {
         // const authHeader = request.headers.get("Authorization");
         // const token = authHeader?.split(" ")[1];
@@ -74,12 +77,17 @@ export const handlers = [
         }
         return HttpResponse.json(null, { status: 401 });
     }),
+
+    // THE DASHBOARD CULTURAL INSIGHTS API:
     http.get<{}, {}>("https://pixabay.com/api/videos", ({ request }) => {
         const url = new URL(request.url);
         const query = url.searchParams.get("q");
-        const perPage = url.searchParams.get("per_page");
+        // const perPage = url.searchParams.get("per_page");
         return HttpResponse.json({
             hits
         });
     }),
+
+    // THE ADD EVENT API: 
+    
 ];
