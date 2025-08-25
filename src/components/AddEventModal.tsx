@@ -1,8 +1,10 @@
 import { DatePicker, Form, Input, Modal } from "antd";
 import FormItem from "antd/es/form/FormItem";
 // import { Input, FormItem } from "formik-antd";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DashboardContext } from "./DashboardContext";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 interface IProps {
     open: boolean;
@@ -12,13 +14,34 @@ interface IProps {
 const AddEventModal: React.FC<IProps> = ({ open, onCancel }) => {
     const { isDark } = useContext(DashboardContext);
     const [eventName, setEventName] = useState<string>("");
+    const [dateTime, setDateTime] = useState<any | null>(null)
+
+    useEffect(() => { 
+        if (open) {
+            setEventName("")
+            setDateTime(null)
+        }
+    }, [open])
+
     const handleCancel = () => {
         onCancel();
     };
+    const handleSubmit = async() => {
+        try {
+            await axios.post("/api/createEvent", {
+                name: eventName,
+                date: dateTime.format("YYYY-MM-DD")
+            })
+            onCancel()
+        } catch (error) {
+            toast.error("Failed to create event")
+        }
+    }
     return (
         <Modal
             open={open}
             onCancel={handleCancel}
+            onOk={handleSubmit}
             title="Add Event"
             className={`${isDark ? "dark-modal" : ""} `}
             okButtonProps={{
@@ -56,6 +79,9 @@ const AddEventModal: React.FC<IProps> = ({ open, onCancel }) => {
                         getPopupContainer={(trigger) =>
                             trigger.parentElement || document.body
                         }
+                        value={dateTime}
+                        onChange={(value) => setDateTime(value)}
+                        format="YYYY-MM-DD"
                     />
                 </FormItem>
             </Form>
