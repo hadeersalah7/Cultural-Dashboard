@@ -6,9 +6,12 @@ import editIcon from "../assets/editIcon.png";
 import type { IEvent } from "../redux-features/user/types";
 
 const AddEvent = () => {
+    
     const [openEventModal, setOpenEventModal] = useState<boolean>(false);
     const [events, setEvents] = useState<IEvent[]>([]);
     const [editMode, setEditMode] = useState<boolean>(false);
+    const [selectedEvent, setSelectedEvent] = useState<IEvent | null>(null)
+
     useEffect(() => {
         axios.get("/api/events").then((res) => setEvents(res.data.events));
     }, [openEventModal]);
@@ -50,6 +53,7 @@ const AddEvent = () => {
                                             onClick={() => {
                                                 setOpenEventModal(true) 
                                                 setEditMode(true)
+                                                setSelectedEvent(event)
                                             }}
                                         />
                                     </span>
@@ -62,6 +66,7 @@ const AddEvent = () => {
             <AddEventModal
                 open={openEventModal}
                 onCancel={() => setOpenEventModal(false)}
+                initialValue={selectedEvent}
             />
         </>
     );

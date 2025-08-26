@@ -17,7 +17,6 @@
     "antd": "^5.27.0",
     "axios": "^1.11.0",
     "chart.js": "^4.5.0",
-    "formik-antd": "^2.0.5",
     "i": "^0.3.7",
     "npm": "^11.5.2",
     "react": "^19.1.0",
@@ -31,6 +30,7 @@
     "react-toastify": "^11.0.5",
     "recharts": "^3.1.2",
     "tailwindcss": "^4.1.11",
+    "uuid": "^11.1.0",
     "yup": "^1.6.1"
   },
   "devDependencies": {

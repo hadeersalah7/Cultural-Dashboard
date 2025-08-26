@@ -5,7 +5,7 @@ import { hits } from "../utils/hits";
 const users: User[] = [];
 
 // Used To Save Created Event
-let events: { name: string; date: string }[] = [];
+let events: {id: string ,name: string; date: string }[] = [];
 
 type LoginRequestBody = {
     email: string;
@@ -102,4 +102,16 @@ export const handlers = [
     http.get<{}, { events: IEvent[] }>("/api/events", () => {
         return HttpResponse.json({ events });
     }),
+
+    // UPDATE EVENT API: 
+    http.put<IEvent, IEvent>("/api/updateEvent", async ({ request }) => {
+        const body: IEvent = await request.json();
+        const index = events.findIndex((e) => e.date === body.date)
+        if (index !== -1) {
+            events[index] = body
+        } else {
+            events.push(body)
+        }
+        return HttpResponse.json({ success: true, event: body });
+    })
 ];

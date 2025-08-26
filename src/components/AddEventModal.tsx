@@ -5,33 +5,43 @@ import { useContext, useEffect, useState } from "react";
 import { DashboardContext } from "./DashboardContext";
 import { toast } from "react-toastify";
 import axios from "axios";
+import type { IEvent } from "../redux-features/user/types";
+import dayjs from "dayjs";
 
 interface IProps {
     open: boolean;
     onCancel: () => void;
+    initialValue: IEvent | null
 }
 
-const AddEventModal: React.FC<IProps> = ({ open, onCancel }) => {
+const AddEventModal: React.FC<IProps> = ({ open, onCancel, initialValue }) => {
     const { isDark } = useContext(DashboardContext);
     const [eventName, setEventName] = useState<string>("");
     const [dateTime, setDateTime] = useState<any | null>(null)
 
-    useEffect(() => { 
+    useEffect(() => {
         if (open) {
-            setEventName("")
-            setDateTime(null)
+            setEventName(initialValue?.name || "")
+            setDateTime(initialValue?.date ? dayjs(initialValue.date) : null)
         }
-    }, [open])
+    }, [open, initialValue])
 
     const handleCancel = () => {
         onCancel();
     };
-    const handleSubmit = async() => {
+    const handleSubmit = async () => {
         try {
-            await axios.post("/api/createEvent", {
-                name: eventName,
-                date: dateTime.format("YYYY-MM-DD")
-            })
+            if (initialValue) {
+                await axios.put("/api/updateEvent", {
+                    name: eventName,
+                    date: dateTime.format("YYYY-MM-DD")
+                })
+            } else {
+                await axios.post("/api/createEvent", {
+                    name: eventName,
+                    date: dateTime.format("YYYY-MM-DD")
+                })
+            }
             onCancel()
         } catch (error) {
             toast.error("Failed to create event")
