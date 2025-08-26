@@ -1,25 +1,18 @@
 import { http, HttpResponse } from "msw";
-import type { IEvent, IPublicUser, User } from "../redux-features/user/types";
+import type { IEvent, IPublicUser, LoginRequestBody, LoginResponseBody, User } from "../redux-features/user/types";
 import { hits } from "../utils/hits";
+import { openDB } from "idb";
 
 const users: User[] = [];
 
 // Used To Save Created Event
-let events: {id: string ,name: string; date: string }[] = [];
+let events: { id: string; name: string; date: string }[] = [];
 
-type LoginRequestBody = {
-    email: string;
-    password: string;
-};
-
-type LoginResponseBody = {
-    token: string;
-    user: {
-        id: number;
-        password: string;
-        email: string;
-    };
-};
+const dbPromise = openDB("event-db", 1, {
+    upgrade(db) {
+        db.createObjectStore('events', {keyPath: "id"})
+    }
+})
 
 function addUser(email: string, password: string): User {
     const existing = users.find((u) => u.email === email);
@@ -94,24 +87,28 @@ export const handlers = [
     // THE ADD EVENT API:
     http.post<IEvent, IEvent>("/api/createEvent", async ({ request }) => {
         const body: IEvent = await request.json();
-        events.push(body);
+        const db = await dbPromise
+        await db.put("events", body)
+        // events.push(body);
         return HttpResponse.json({ success: true, event: body });
     }),
 
     //GET ALL THE EVENTS:
-    http.get<{}, { events: IEvent[] }>("/api/events", () => {
-        return HttpResponse.json({ events });
+    http.get<{}, { events: IEvent[] }>("/api/events", async() => {
+        const db = await dbPromise
+        const allEvents = await db.getAll("events")
+        return HttpResponse.json({ events: allEvents });
     }),
 
-    // UPDATE EVENT API: 
+    // UPDATE EVENT API:
     http.put<IEvent, IEvent>("/api/updateEvent", async ({ request }) => {
         const body: IEvent = await request.json();
-        const index = events.findIndex((e) => e.date === body.date)
+        const index = events.findIndex((e) => e.id === body.id);
         if (index !== -1) {
-            events[index] = body
+            events[index] = body;
         } else {
-            events.push(body)
+            events.push(body);
         }
         return HttpResponse.json({ success: true, event: body });
-    })
+    }),
 ];

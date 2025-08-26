@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import type { IEvent } from "../redux-features/user/types";
 import dayjs from "dayjs";
+import { v4 as uuidv4 } from "uuid"
 
 interface IProps {
     open: boolean;
@@ -33,11 +34,13 @@ const AddEventModal: React.FC<IProps> = ({ open, onCancel, initialValue }) => {
         try {
             if (initialValue) {
                 await axios.put("/api/updateEvent", {
+                    id: initialValue.id,
                     name: eventName,
                     date: dateTime.format("YYYY-MM-DD")
                 })
             } else {
                 await axios.post("/api/createEvent", {
+                    id: uuidv4(),
                     name: eventName,
                     date: dateTime.format("YYYY-MM-DD")
                 })
