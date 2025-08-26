@@ -37,3 +37,10 @@ export const getAllEvents = async ():Promise<IEvent[]> => {
     const db = await getDB()
     return db.getAll(STORE_NAME)
 }
+
+
+// Function to delete an Event:
+export const deleteEvent = async (id: string) => {
+    const db = await getDB()
+    await db.delete(STORE_NAME, id)
+}

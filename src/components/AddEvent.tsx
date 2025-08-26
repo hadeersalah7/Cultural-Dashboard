@@ -3,6 +3,7 @@ import { FcPlus } from "react-icons/fc";
 import { AddEventModal } from ".";
 import axios from "axios";
 import editIcon from "../assets/editIcon.png";
+import removeIcon from "../assets/removeIcon.png"
 import type { IEvent } from "../redux-features/user/types";
 import { v4 as uuidv4 } from "uuid"
 import useEventDB from './../hooks/useEventDB';
@@ -43,7 +44,7 @@ const AddEvent = () => {
                                         <strong>{event.name}</strong> - {event.date}
                                     </p>
                                 </div>
-                                <div>
+                                <div className="flex justify-between gap-1.5">
                                     <span>
                                         <img
                                             src={editIcon}
@@ -55,6 +56,14 @@ const AddEvent = () => {
                                                 setEditMode(true)
                                                 setSelectedEvent(event)
                                             }}
+                                        />
+                                    </span>
+
+                                    <span>
+                                        <img src={removeIcon}
+                                            alt="remove-icon"
+                                            className="w-[30px] cursor-pointer"
+                                            title="Remove Event"
                                         />
                                     </span>
                                 </div>

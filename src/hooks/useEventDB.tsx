@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { IEvent } from "../redux-features/user/types";
-import { getAllEvents, saveEvent, updateEvent } from "../utils/eventsDS";
+import { getAllEvents, saveEvent, updateEvent, deleteEvent } from "../utils/eventsDS";
 export default function useEventDB() {
     const [events, setEvents] = useState<IEvent[]>([]);
     const fetchEvents = async () => {
@@ -16,6 +16,7 @@ export default function useEventDB() {
         setEvents,
         saveEvent,
         updateEvent,
-        fetchEvents
+        fetchEvents,
+        deleteEvent
     };
 }

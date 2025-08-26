@@ -1,7 +1,7 @@
 import { http, HttpResponse } from "msw";
 import type { IEvent, IPublicUser, LoginRequestBody, LoginResponseBody, User } from "../redux-features/user/types";
 import { hits } from "../utils/hits";
-import { getAllEvents, saveEvent, updateEvent } from "../utils/eventsDS";
+import { deleteEvent, getAllEvents, saveEvent, updateEvent } from "../utils/eventsDS";
 
 const users: User[] = [];
 
@@ -100,4 +100,11 @@ export const handlers = [
         await updateEvent(body)
         return HttpResponse.json({ success: true, event: body });
     }),
+
+    // DELETE EVENT API:
+    http.delete<{ id: string }, {}, { success: boolean }>("/api/deleteEvent/:id", async ({ params }) => {
+        const id = params.id;
+        await deleteEvent(id)
+        return HttpResponse.json({ success: true });
+    })
 ];
