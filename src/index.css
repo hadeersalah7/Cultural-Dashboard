@@ -82,7 +82,7 @@
   width: 18px;
   left: 3px;
   bottom: 3px;
-  background-color: white;
+  background-color: #ffff;
   border-radius: 50%;
   transition: 0.4s;
 }
@@ -106,20 +106,20 @@ input:checked + .slider:before {
 /* Dark Calendar: */
 .dark-calendar .ant-picker-panel {
   background-color: #28264f !important;
-  color: white !important;
+  color: #ffff !important;
 }
 
 .dark-calendar .ant-picker-cell {
-  color: white !important;
+  color: #ffff !important;
 }
 
 .dark-calendar .ant-picker-header {
-  color: white !important;
+  color: #ffff !important;
   background-color: #28264f !important;
 }
 
 .dark-calendar .ant-picker-content th {
-  color: white !important;
+  color: #ffff !important;
 }
 .dark-calendar .ant-picker-calendar{
   background: #28264f !important;
@@ -177,22 +177,67 @@ input:checked + .slider:before {
 
 .dark-mode .ant-picker-dropdown .ant-picker-panel-container {
   background-color: #6b21a8 !important;
-  color: white !important;
+  color: #ffff !important;
 }
 
 .dark-mode .ant-picker-dropdown .ant-picker-cell {
-  color: white !important;
+  color: #ffff !important;
 }
 
 .dark-mode .ant-picker-dropdown .ant-picker-header {
   background-color: #6b21a8 !important;
-  color: white !important;
+  color: #ffff !important;
 }
 
 .dark-mode .ant-picker-dropdown .ant-picker-content th {
-  color: white !important;
+  color: #ffff !important;
 }
 
+/* ---------------------------------------------------------------- */
+
+/* Dark Date Input:  */
+
+.dark .ant-picker-panel-container  {
+  background-color: #28264f !important;
+  color: #ffff !important;
+}
+
+.dark .ant-picker-cell {
+  color: #ffff !important;
+}
+
+.dark .ant-picker-content th {
+  color: #ffff !important;
+}
+
+.dark .ant-picker-header {
+  color: #ffff !important;
+} 
+
+.dark .ant-picker-header-super-prev-btn{
+  color: #ffff !important;
+}
+
+.dark .ant-picker-header-prev-btn{
+  color: #ffff !important;
+}
+
+.dark .ant-picker-header-next-btn{
+  color: #ffff !important;
+}
+
+.dark .ant-picker-header-super-next-btn{
+  color: #fff !important;
+}
+.dark .ant-picker-cell-today  .ant-picker-cell-inner {
+  background-color: #6b21a8 !important;
+  color: #ffff !important;
+  border-radius: 4px;
+}
+
+/* .dark .ant-picker-cell-selected {
+  background-color: #6b21a8 !important;
+} */
 
 @media screen and (min-width:100px) and (max-width:767px){
   .switch{

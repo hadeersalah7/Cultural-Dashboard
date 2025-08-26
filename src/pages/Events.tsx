@@ -8,7 +8,7 @@ const Events = () => {
   const { isDark } = useContext(DashboardContext)
   const isEventsPage = window.location.href.includes("events")
   return (
-    <div className={`${isEventsPage ? "lg:w-[60%] mt-10 " : ""} light-calender min-[285px]:mx-auto min-[285px]:w-xs min-[523px]:w-lg lg:w-95 ${isDark ? "dark-calendar" : ""}`}>
+    <div className={`${isEventsPage ? "lg:w-[60%] mt-10 " : ""}  min-[285px]:mx-auto min-[285px]:w-xs min-[523px]:w-lg lg:w-95 ${isDark ? "dark-calendar" : ""}`}>
       <Calendar fullscreen={false}
       
         headerRender={({ value, type, onChange, onTypeChange }) => {

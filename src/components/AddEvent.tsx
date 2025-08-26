@@ -7,8 +7,9 @@ import removeIcon from "../assets/removeIcon.png"
 import type { IEvent } from "../redux-features/user/types";
 import { v4 as uuidv4 } from "uuid"
 import useEventDB from './../hooks/useEventDB';
+import { toast } from "react-toastify";
 const AddEvent = () => {
-    const { events, setEvents } = useEventDB()
+    const { events, setEvents, fetchEvents } = useEventDB()
     const [openEventModal, setOpenEventModal] = useState<boolean>(false);
     const [editMode, setEditMode] = useState<boolean>(false);
     const [selectedEvent, setSelectedEvent] = useState<IEvent | null>(null)
@@ -16,6 +17,18 @@ const AddEvent = () => {
     useEffect(() => {
         axios.get("/api/events").then((res) => setEvents(res.data.events));
     }, [openEventModal]);
+
+    const deleteEvent = async (id: string) => {
+        try {
+            const response = await axios.delete(`/api/deleteEvent/${id}`)
+            if (response) {
+                toast.success("Event Deleted Successfully")
+            }
+            fetchEvents()
+        } catch (error) {
+            toast.error("Failed To Delete Event!")
+        }
+    }
     return (
         <>
             <div className="mt-10 bg-slate-100  dark:bg-[#28264f] px-5 rounded-lg h-15 py-4">
@@ -64,6 +77,7 @@ const AddEvent = () => {
                                             alt="remove-icon"
                                             className="w-[30px] cursor-pointer"
                                             title="Remove Event"
+                                            onClick={() => deleteEvent(event.id)}
                                         />
                                     </span>
                                 </div>

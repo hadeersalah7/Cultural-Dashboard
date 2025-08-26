@@ -22,13 +22,12 @@ const AddEventModal: React.FC<IProps> = ({ open, onCancel, initialValue, editMod
 
     useEffect(() => {
         if (open) {
-            if (editMode) {
+
             setEventName(initialValue?.name || "")
             setDateTime(initialValue?.date ? dayjs(initialValue.date) : null)
-            }
             console.log("initial Value: ", initialValue)
         }
-    }, [open, initialValue, editMode])
+    }, [open, initialValue])
 
     const handleCancel = () => {
         onCancel();
@@ -41,7 +40,12 @@ const AddEventModal: React.FC<IProps> = ({ open, onCancel, initialValue, editMod
                     name: eventName,
                     date: dateTime.format("YYYY-MM-DD")
                 })
+                toast.success("Event Edited Successfully!")
             } else {
+                if (eventName === "" || dateTime === null) {
+                    toast.info("Please Enter An Event Name & Date!")
+                    return;
+                }
                 await axios.post("/api/createEvent", {
                     id: uuidv4(),
                     name: eventName,
@@ -93,7 +97,7 @@ const AddEventModal: React.FC<IProps> = ({ open, onCancel, initialValue, editMod
 
                 <FormItem name="eventDate" label="Event Date">
                     <DatePicker
-                        className="min-[260px]:w-full"
+                        className={`min-[260px]:w-full ${isDark ? "darkDateInput" : ""}`}
                         getPopupContainer={(trigger) =>
                             trigger.parentElement || document.body
                         }
