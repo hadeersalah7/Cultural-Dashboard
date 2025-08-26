@@ -4,9 +4,8 @@ import { AddEventModal } from ".";
 import axios from "axios";
 import editIcon from "../assets/editIcon.png";
 import type { IEvent } from "../redux-features/user/types";
-
+import { v4 as uuidv4 } from "uuid"
 const AddEvent = () => {
-    
     const [openEventModal, setOpenEventModal] = useState<boolean>(false);
     const [events, setEvents] = useState<IEvent[]>([]);
     const [editMode, setEditMode] = useState<boolean>(false);
@@ -33,10 +32,10 @@ const AddEvent = () => {
                     </header>
                 ) : (
                     <div className="flex justify-between">
-                        {events.map((event, index) => (
+                        {events.map((event) => (
                             <>
                                 <div
-                                    key={index}
+                                    key={uuidv4()}
                                     className="text-gray-500 dark:text-white flex justify-between"
                                 >
                                     <p className="text-lg">

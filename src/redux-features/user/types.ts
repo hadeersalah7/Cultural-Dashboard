@@ -26,3 +26,17 @@ export interface IEvent {
     name: string;
     date: string;
 }
+
+export type LoginRequestBody = {
+  email: string;
+  password: string;
+};
+
+export type LoginResponseBody = {
+  token: string;
+  user: {
+    id: number;
+    password: string;
+    email: string;
+  };
+};
