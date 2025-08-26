@@ -22,6 +22,7 @@ export type User = {
 export type IPublicUser = Omit<User, "password">
 
 export interface IEvent {
+    id: string;
     name: string;
     date: string;
 }
