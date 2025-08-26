@@ -5,9 +5,10 @@ import axios from "axios";
 import editIcon from "../assets/editIcon.png";
 import type { IEvent } from "../redux-features/user/types";
 import { v4 as uuidv4 } from "uuid"
+import useEventDB from './../hooks/useEventDB';
 const AddEvent = () => {
+    const { events, setEvents } = useEventDB()
     const [openEventModal, setOpenEventModal] = useState<boolean>(false);
-    const [events, setEvents] = useState<IEvent[]>([]);
     const [editMode, setEditMode] = useState<boolean>(false);
     const [selectedEvent, setSelectedEvent] = useState<IEvent | null>(null)
 
@@ -66,6 +67,7 @@ const AddEvent = () => {
                 open={openEventModal}
                 onCancel={() => setOpenEventModal(false)}
                 initialValue={selectedEvent}
+                editMode={editMode}
             />
         </>
     );

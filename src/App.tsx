@@ -1,19 +1,29 @@
-import { Route, Routes, BrowserRouter as Router } from "react-router-dom"
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { ProtectedRoutes } from "./components";
-import { CulutralInsights, Dashboard, DigitalArchives, Events, Feedback, Layout, Login, Settings, TeamValues } from "./pages";
+import {
+  CulutralInsights,
+  Dashboard,
+  DigitalArchives,
+  Events,
+  Feedback,
+  Layout,
+  Login,
+  Settings,
+  TeamValues,
+} from "./pages";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "./store";
 import { getUserData } from "./redux-features/user/userSlice";
 
 function App() {
-  const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-    dispatch(getUserData())
-  }, [])
+    dispatch(getUserData());
+  }, []);
   return (
     <>
       <Router>
@@ -39,7 +49,7 @@ function App() {
         <ToastContainer position="bottom-center" />
       </Router>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

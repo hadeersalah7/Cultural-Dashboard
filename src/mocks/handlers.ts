@@ -1,18 +1,9 @@
 import { http, HttpResponse } from "msw";
 import type { IEvent, IPublicUser, LoginRequestBody, LoginResponseBody, User } from "../redux-features/user/types";
 import { hits } from "../utils/hits";
-import { openDB } from "idb";
+import { getAllEvents, saveEvent, updateEvent } from "../utils/eventsDS";
 
 const users: User[] = [];
-
-// Used To Save Created Event
-let events: { id: string; name: string; date: string }[] = [];
-
-const dbPromise = openDB("event-db", 1, {
-    upgrade(db) {
-        db.createObjectStore('events', {keyPath: "id"})
-    }
-})
 
 function addUser(email: string, password: string): User {
     const existing = users.find((u) => u.email === email);
@@ -87,28 +78,26 @@ export const handlers = [
     // THE ADD EVENT API:
     http.post<IEvent, IEvent>("/api/createEvent", async ({ request }) => {
         const body: IEvent = await request.json();
-        const db = await dbPromise
-        await db.put("events", body)
-        // events.push(body);
+        await saveEvent(body)
         return HttpResponse.json({ success: true, event: body });
     }),
 
     //GET ALL THE EVENTS:
     http.get<{}, { events: IEvent[] }>("/api/events", async() => {
-        const db = await dbPromise
-        const allEvents = await db.getAll("events")
-        return HttpResponse.json({ events: allEvents });
+        const events = await getAllEvents()
+        return HttpResponse.json({ events });
     }),
 
     // UPDATE EVENT API:
     http.put<IEvent, IEvent>("/api/updateEvent", async ({ request }) => {
         const body: IEvent = await request.json();
-        const index = events.findIndex((e) => e.id === body.id);
-        if (index !== -1) {
-            events[index] = body;
-        } else {
-            events.push(body);
-        }
+        // const index = events.findIndex((e) => e.id === body.id);
+        // if (index !== -1) {
+        //     events[index] = body;
+        // } else {
+        //     events.push(body);
+        // }
+        await updateEvent(body)
         return HttpResponse.json({ success: true, event: body });
     }),
 ];

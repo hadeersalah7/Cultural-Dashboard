@@ -1,6 +1,5 @@
 import { DatePicker, Form, Input, Modal } from "antd";
 import FormItem from "antd/es/form/FormItem";
-// import { Input, FormItem } from "formik-antd";
 import { useContext, useEffect, useState } from "react";
 import { DashboardContext } from "./DashboardContext";
 import { toast } from "react-toastify";
@@ -12,20 +11,24 @@ import { v4 as uuidv4 } from "uuid"
 interface IProps {
     open: boolean;
     onCancel: () => void;
-    initialValue: IEvent | null
+    initialValue: IEvent | null;
+    editMode: boolean
 }
 
-const AddEventModal: React.FC<IProps> = ({ open, onCancel, initialValue }) => {
+const AddEventModal: React.FC<IProps> = ({ open, onCancel, initialValue, editMode }) => {
     const { isDark } = useContext(DashboardContext);
     const [eventName, setEventName] = useState<string>("");
     const [dateTime, setDateTime] = useState<any | null>(null)
 
     useEffect(() => {
         if (open) {
+            if (editMode) {
             setEventName(initialValue?.name || "")
             setDateTime(initialValue?.date ? dayjs(initialValue.date) : null)
+            }
+            console.log("initial Value: ", initialValue)
         }
-    }, [open, initialValue])
+    }, [open, initialValue, editMode])
 
     const handleCancel = () => {
         onCancel();
@@ -53,9 +56,10 @@ const AddEventModal: React.FC<IProps> = ({ open, onCancel, initialValue }) => {
     return (
         <Modal
             open={open}
+            key={editMode ? initialValue?.id : "new"}
             onCancel={handleCancel}
             onOk={handleSubmit}
-            title="Add Event"
+            title={ editMode ? "Edit Event": "Add Event"}
             className={`${isDark ? "dark-modal" : ""} `}
             okButtonProps={{
                 style: {
@@ -83,6 +87,7 @@ const AddEventModal: React.FC<IProps> = ({ open, onCancel, initialValue }) => {
                         type="text"
                         value={eventName}
                         onChange={(e) => setEventName(e.target.value)}
+                        placeholder="Event Name"
                     />
                 </FormItem>
 
