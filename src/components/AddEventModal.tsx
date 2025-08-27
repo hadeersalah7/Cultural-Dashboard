@@ -12,7 +12,7 @@ interface IProps {
     open: boolean;
     onCancel: () => void;
     initialValue: IEvent | null;
-    editMode: boolean
+    editMode: boolean;
 }
 
 const AddEventModal: React.FC<IProps> = ({ open, onCancel, initialValue, editMode }) => {
@@ -22,10 +22,13 @@ const AddEventModal: React.FC<IProps> = ({ open, onCancel, initialValue, editMod
 
     useEffect(() => {
         if (open) {
-
-            setEventName(initialValue?.name || "")
-            setDateTime(initialValue?.date ? dayjs(initialValue.date) : null)
-            console.log("initial Value: ", initialValue)
+            if (initialValue) {
+                setEventName(initialValue.name);
+                setDateTime(dayjs(initialValue.date));
+            } else {
+                setEventName("");
+                setDateTime(null);
+            }
         }
     }, [open, initialValue])
 
@@ -34,7 +37,13 @@ const AddEventModal: React.FC<IProps> = ({ open, onCancel, initialValue, editMod
     };
     const handleSubmit = async () => {
         try {
+            if (eventName === "" || dateTime === null) {
+                    console.log("event: ", eventName)
+                        toast.error("Must Update At Least One Input")
+                        return 
+                    }
             if (initialValue) {
+                
                 await axios.put("/api/updateEvent", {
                     id: initialValue.id,
                     name: eventName,
@@ -60,10 +69,9 @@ const AddEventModal: React.FC<IProps> = ({ open, onCancel, initialValue, editMod
     return (
         <Modal
             open={open}
-            key={editMode ? initialValue?.id : "new"}
             onCancel={handleCancel}
             onOk={handleSubmit}
-            title={ editMode ? "Edit Event": "Add Event"}
+            title={editMode ? "Edit Event" : "Add Event"}
             className={`${isDark ? "dark-modal" : ""} `}
             okButtonProps={{
                 style: {
