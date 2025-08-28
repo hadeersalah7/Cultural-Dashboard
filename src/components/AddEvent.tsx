@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FcPlus } from "react-icons/fc";
 import { AddEventModal } from ".";
 import axios from "axios";
@@ -6,10 +6,10 @@ import editIcon from "../assets/editIcon.png";
 import removeIcon from "../assets/removeIcon.png";
 import type { IEvent } from "../redux-features/user/types";
 import { v4 as uuidv4 } from "uuid";
-import useEventDB from "./../hooks/useEventDB";
 import { toast } from "react-toastify";
+import { EventContext } from "../contexts/EventsContext";
 const AddEvent = () => {
-    const { events, setEvents, fetchEvents } = useEventDB();
+    const { events, setEvents, fetchEvents } = useContext(EventContext)
     const [openEventModal, setOpenEventModal] = useState<boolean>(false);
     const [selectedEvent, setSelectedEvent] = useState<IEvent | null>(null);
     const [editMode, setEditMode] = useState<boolean>(false);

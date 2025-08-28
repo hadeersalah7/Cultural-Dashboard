@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { FaBars, FaBarsStaggered } from "react-icons/fa6";
-import { DashboardContext } from "./DashboardContext";
+import { DashboardContext } from "../contexts/DashboardContext";
 import { ThemeToggler, UserLogoutDropDown } from "../components";
 const Navbar = () => {
     const { pageTitle, isSidebarOpen, setIsSidebarOpen } =

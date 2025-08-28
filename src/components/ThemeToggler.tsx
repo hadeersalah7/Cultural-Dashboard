@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { BiMoon, BiSun } from "react-icons/bi";
-import { DashboardContext } from "./DashboardContext";
+import { DashboardContext } from "../contexts/DashboardContext";
 
 const ThemeToggler = () => {
     const { isDark, setIsDark } = useContext(DashboardContext);

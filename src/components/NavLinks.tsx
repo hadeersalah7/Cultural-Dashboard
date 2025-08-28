@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { DashboardContext } from "./DashboardContext";
+import { DashboardContext } from "../contexts/DashboardContext";
 import { Links } from "../utils/data";
 import { NavLink } from "react-router-dom";
 

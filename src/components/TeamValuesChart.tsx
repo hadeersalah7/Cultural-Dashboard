@@ -1,5 +1,5 @@
-import  { useContext } from 'react'
-import { DashboardContext } from './DashboardContext';
+import { useContext } from 'react'
+import { DashboardContext } from '../contexts/DashboardContext';
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 
 const TeamValuesChart = () => {

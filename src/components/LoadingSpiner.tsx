@@ -1,6 +1,6 @@
 import { Flex, Spin } from "antd"
 import { useContext } from "react"
-import { DashboardContext } from "./DashboardContext"
+import { DashboardContext } from "../contexts/DashboardContext"
 import { LoadingOutlined } from "@ant-design/icons";
 
 
@@ -15,7 +15,7 @@ const LoadingSpiner = () => {
     )
     return (
         <Flex align="center" gap="middle" justify="center" >
-            <Spin size="large" indicator={customeLoadingIcon}/>
+            <Spin size="large" indicator={customeLoadingIcon} />
         </Flex>
     )
 }
