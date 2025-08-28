@@ -15,32 +15,39 @@ export async function getDB() {
   });
 }
 
-// Function to save event: 
-export const saveEvent = async(event: IEvent) => {
-    const db = await getDB()
-    await db.put(STORE_NAME, event)
-}
+// Function to save event:
+export const saveEvent = async (event: IEvent) => {
+  const db = await getDB();
+  await db.put(STORE_NAME, event);
+};
 
 // Function to update event:
-export const updateEvent = async(event: IEvent) => {
-    const db = await getDB()
-    const existing = await db.get(STORE_NAME, event.id) 
-    if (existing) {
-        await db.put(STORE_NAME, event)
-    } else {
-        await db.add(STORE_NAME, event)
-    }
-}
+export const updateEvent = async (event: IEvent) => {
+  const db = await getDB();
+  const existing = await db.get(STORE_NAME, event.id);
+  if (existing) {
+    await db.put(STORE_NAME, event);
+  } else {
+    await db.add(STORE_NAME, event);
+  }
+};
 
-// Function to get all events: 
-export const getAllEvents = async ():Promise<IEvent[]> => {
-    const db = await getDB()
-    return db.getAll(STORE_NAME)
-}
-
+// Function to get all events:
+export const getAllEvents = async (): Promise<IEvent[]> => {
+  const db = await getDB();
+  return db.getAll(STORE_NAME);
+};
 
 // Function to delete an Event:
 export const deleteEvent = async (id: string) => {
-    const db = await getDB()
-    await db.delete(STORE_NAME, id)
-}
+  const db = await getDB();
+  await db.delete(STORE_NAME, id);
+};
+
+// Function to clear the IndexedDB after logout:
+export const clearEvents = async () => {
+  const db = await getDB();
+  const tx = db.transaction("events", "readwrite");
+  await tx.store.clear();
+  await tx.done;
+};
