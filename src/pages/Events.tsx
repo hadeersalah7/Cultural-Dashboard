@@ -19,8 +19,8 @@ const Events = () => {
   return (
     <div
       className={`${
-        isEventsPage ? "lg:w-[60%] mt-10 " : ""
-      } light-calender min-[285px]:mx-auto min-[285px]:w-xs min-[523px]:w-lg lg:w-95 ${
+        isEventsPage ? "lg:w-[60%] mt-10 light-calender" : ""
+      } bg-slate-100 min-[285px]:mx-auto min-[285px]:w-xs min-[523px]:w-lg lg:w-95 shadow-sm rounded-xl ${
         isDark ? "dark-calendar" : ""
       }`}
     >

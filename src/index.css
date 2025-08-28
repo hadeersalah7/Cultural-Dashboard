@@ -250,16 +250,15 @@ input:checked + .slider:before {
 
 .ant-picker-cell-inner .highlight {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  /* top: -25px;
+  right: 15px; */
+  transform: translate(-11px, -25px);
   width: 25px;
   height: 25px;
   background-color: #6b21a8 !important;
   border-radius: 50%;
   color: #ffff !important;
   z-index: -1;
-  display: flex;
-  align-items: center;
 }
 
 
