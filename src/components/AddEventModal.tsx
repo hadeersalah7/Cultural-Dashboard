@@ -1,12 +1,13 @@
 import { DatePicker, Form, Input, Modal } from "antd";
 import FormItem from "antd/es/form/FormItem";
 import { useContext, useEffect, useState } from "react";
-import { DashboardContext } from "./DashboardContext";
+import { DashboardContext } from "../contexts/DashboardContext";
 import { toast } from "react-toastify";
 import axios from "axios";
 import type { IEvent } from "../redux-features/user/types";
 import dayjs from "dayjs";
-import { v4 as uuidv4 } from "uuid"
+import { v4 as uuidv4 } from "uuid";
+import { EventContext } from "../contexts/EventsContext";
 
 interface IProps {
     open: boolean;
@@ -15,11 +16,16 @@ interface IProps {
     editMode: boolean;
 }
 
-const AddEventModal: React.FC<IProps> = ({ open, onCancel, initialValue, editMode }) => {
+const AddEventModal: React.FC<IProps> = ({
+    open,
+    onCancel,
+    initialValue,
+    editMode,
+}) => {
     const { isDark } = useContext(DashboardContext);
     const [eventName, setEventName] = useState<string>("");
-    const [dateTime, setDateTime] = useState<any | null>(null)
-
+    const [dateTime, setDateTime] = useState<any | null>(null);
+    const { fetchEvents } = useContext(EventContext);
     useEffect(() => {
         if (open) {
             if (initialValue) {
@@ -30,7 +36,7 @@ const AddEventModal: React.FC<IProps> = ({ open, onCancel, initialValue, editMod
                 setDateTime(null);
             }
         }
-    }, [open, initialValue])
+    }, [open, initialValue]);
 
     const handleCancel = () => {
         onCancel();
@@ -38,34 +44,35 @@ const AddEventModal: React.FC<IProps> = ({ open, onCancel, initialValue, editMod
     const handleSubmit = async () => {
         try {
             if (eventName === "" || dateTime === null) {
-                    console.log("event: ", eventName)
-                        toast.error("Must Update At Least One Input")
-                        return 
-                    }
+                console.log("event: ", eventName);
+                toast.error("Must Update At Least One Input");
+                return;
+            }
             if (initialValue) {
-                
                 await axios.put("/api/updateEvent", {
                     id: initialValue.id,
                     name: eventName,
-                    date: dateTime.format("YYYY-MM-DD")
-                })
-                toast.success("Event Edited Successfully!")
+                    date: dateTime.format("YYYY-MM-DD"),
+                });
+                toast.success("Event Edited Successfully!");
+                fetchEvents();
             } else {
                 if (eventName === "" || dateTime === null) {
-                    toast.info("Please Enter An Event Name & Date!")
+                    toast.info("Please Enter An Event Name & Date!");
                     return;
                 }
                 await axios.post("/api/createEvent", {
                     id: uuidv4(),
                     name: eventName,
-                    date: dateTime.format("YYYY-MM-DD")
-                })
+                    date: dateTime.format("YYYY-MM-DD"),
+                });
+                fetchEvents();
             }
-            onCancel()
+            onCancel();
         } catch (error) {
-            toast.error("Failed to create event")
+            toast.error("Failed to create event");
         }
-    }
+    };
     return (
         <Modal
             open={open}

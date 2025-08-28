@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { DashboardContext } from "./DashboardContext";
+import { DashboardContext } from "../contexts/DashboardContext";
 import { LiaPollHSolid, LiaPollSolid } from "react-icons/lia";
 import { IoMdClose } from "react-icons/io";
 import { Navlinks } from ".";
@@ -10,8 +10,8 @@ const Sidebar = () => {
   return (
     <aside
       className={`${isSidebarOpen
-          ? "max-[991px]:block max-[991px]:fixed max-[991px]:z-10"
-          : "max-[1025px]:hidden"
+        ? "max-[991px]:block max-[991px]:fixed max-[991px]:z-10"
+        : "max-[1025px]:hidden"
         } drawer drawer open `}
     >
       <div className="drawer-side ">

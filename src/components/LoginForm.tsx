@@ -10,7 +10,7 @@ import type { AppDispatch, RootState } from "../store";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../redux-features/user/userSlice";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { DashboardContext } from "./DashboardContext";
+import { DashboardContext } from "../contexts/DashboardContext";
 const LoginForm = () => {
     const loading = useSelector((state: RootState) => state.loginUser.loading);
     const { isDark } = useContext(DashboardContext);

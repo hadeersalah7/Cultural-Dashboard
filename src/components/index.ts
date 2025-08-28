@@ -1,4 +1,4 @@
-import { DashboardContextProvider } from "./DashboardContext";
+import { DashboardContextProvider } from "../contexts/DashboardContext";
 import LoginForm from "./LoginForm";
 import Navbar from "./Navbar";
 import ProtectedRoutes from "./ProtectedRoutes";
@@ -13,18 +13,18 @@ import LoadingSpiner from "./LoadingSpiner";
 import AddEvent from "./AddEvent";
 import AddEventModal from "./AddEventModal";
 export {
-    LoginForm,
-    RightLoginContent,
-    DashboardContextProvider,
-    ProtectedRoutes,
-    Navlinks,
-    Navbar,
-    Sidebar,
-    UserLogoutDropDown,
-    ThemeToggler,
-    WatchDashboardVideos,
-    TeamValuesChart,
-    LoadingSpiner,
-    AddEvent,
-    AddEventModal
-}
+  LoginForm,
+  RightLoginContent,
+  DashboardContextProvider,
+  ProtectedRoutes,
+  Navlinks,
+  Navbar,
+  Sidebar,
+  UserLogoutDropDown,
+  ThemeToggler,
+  WatchDashboardVideos,
+  TeamValuesChart,
+  LoadingSpiner,
+  AddEvent,
+  AddEventModal,
+};
