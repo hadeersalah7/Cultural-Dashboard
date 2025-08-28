@@ -102,8 +102,8 @@ const AddEvent = () => {
                     <span
                         className="text-[70px] cursor-pointer"
                         onClick={() => {
-                            setOpenEventModal(true);
                             setSelectedEvent(null);
+                            setOpenEventModal(true);
                             setEditMode(false);
                         }}
                         title="Add Event"

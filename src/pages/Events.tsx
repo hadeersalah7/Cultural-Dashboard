@@ -1,5 +1,5 @@
 import { Calendar } from "antd";
-import { useContext, useEffect, useMemo } from "react";
+import { useContext, useMemo } from "react";
 import { DashboardContext } from "../contexts/DashboardContext";
 import { AddEvent } from "../components";
 import { EventContext } from "../contexts/EventsContext";
@@ -8,10 +8,6 @@ const Events = () => {
   const { isDark } = useContext(DashboardContext);
   const { events } = useContext(EventContext);
   const isEventsPage = window.location.href.includes("events");
-
-  useEffect(() => {
-    console.log("Events updated:", events);
-  }, [events]);
   const calendarKey = useMemo(() => {
     return events.map((e) => e.id).join("-");
   }, [events]);
@@ -20,13 +16,14 @@ const Events = () => {
     <div
       className={`${
         isEventsPage ? "lg:w-[60%] mt-10 light-calender" : ""
-      } bg-slate-100 min-[285px]:mx-auto min-[285px]:w-xs min-[523px]:w-lg lg:w-95 shadow-sm rounded-xl ${
+      }  min-[285px]:mx-auto min-[285px]:w-xs min-[523px]:w-lg lg:w-95 rounded-xl ${
         isDark ? "dark-calendar" : ""
       }`}
     >
       <Calendar
         key={calendarKey}
         fullscreen={false}
+        className="shadow-sm "
         cellRender={(date) => {
           const formattedDate = date.format("YYYY-MM-DD");
           const matchedEvents = events.filter(

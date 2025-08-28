@@ -11,9 +11,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../redux-features/user/userSlice";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { DashboardContext } from "../contexts/DashboardContext";
+import { EventContext } from './../contexts/EventsContext';
 const LoginForm = () => {
     const loading = useSelector((state: RootState) => state.loginUser.loading);
     const { isDark } = useContext(DashboardContext);
+    const {fetchEvents} = useContext(EventContext)
     const [showPass, setShowPass] = useState(false);
     const navigate = useNavigate();
     const dispatch: AppDispatch = useDispatch();
@@ -44,6 +46,8 @@ const LoginForm = () => {
     const onSubmit = async (data: ILogin) => {
         try {
             const token = await dispatch(loginUser(data));
+            fetchEvents()
+            
             if (!token) {
                 navigate("/login");
             } else {
