@@ -261,7 +261,22 @@ input:checked + .slider:before {
   z-index: -1;
 }
 
+/* ant select styling */
 
+.dark .ant-select {
+  background-color: #6b21a8 !important;
+  border: none !important;
+}
+
+.dark .ant-select-selector{
+  background-color: #6b21a8 !important;
+  color: #ffff !important;
+  border: none !important;
+}
+
+.dark .ant-select-arrow{
+  color: #ffff !important;
+}
 
 @media screen and (min-width:100px) and (max-width:767px){
   .switch{
