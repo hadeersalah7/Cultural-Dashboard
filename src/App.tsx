@@ -11,7 +11,6 @@ import {
   Feedback,
   Layout,
   Login,
-  Settings,
   TeamValues,
 } from "./pages";
 import { useEffect } from "react";
@@ -43,7 +42,6 @@ function App() {
             <Route path="/events" element={<Events />} />
             <Route path="/feedback" element={<Feedback />} />
             <Route path="/digital-archives" element={<DigitalArchives />} />
-            <Route path="/settings" element={<Settings />} />
           </Route>
         </Routes>
         <ToastContainer position="bottom-center" />
