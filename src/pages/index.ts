@@ -5,7 +5,6 @@ import Events from "./Events";
 import Feedback from "./Feedback";
 import Layout from "./Layout";
 import Login from "./Login";
-import Settings from "./Settings";
 import TeamValues from "./TeamValues";
 
 
@@ -17,6 +16,5 @@ export {
     DigitalArchives,
     Events,
     Feedback,
-    Settings,
     TeamValues
 }

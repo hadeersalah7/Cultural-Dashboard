@@ -20,7 +20,7 @@ const NavLinks = () => {
           }}
           onClick={() => setPageTitle(l.text)}
         >
-          <span className="text-xl ml-4 grid items-center px-2.5">
+          <span className="text-xl ml-4 grid items-center px-2.5" title={l.text}>
             {l.icon}
           </span>
           <span className={`${toggleSidebar ? "hidden" : ""}`} title={l.text}>{l.text}</span>
