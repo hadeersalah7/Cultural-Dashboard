@@ -5,6 +5,7 @@ import {
   Feedback,
   TeamValues,
 } from ".";
+import { Footer } from "../components";
 
 const Dashboard = () => {
   return (
@@ -16,6 +17,8 @@ const Dashboard = () => {
       <Events />
       <Feedback />
       <DigitalArchives />
+      
+      <Footer />
     </div>
   );
 };
