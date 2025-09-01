@@ -12,6 +12,8 @@ import TeamValuesChart from "./TeamValuesChart";
 import LoadingSpiner from "./LoadingSpiner";
 import AddEvent from "./AddEvent";
 import AddEventModal from "./AddEventModal";
+import Footer from "./Footer";
+
 export {
   LoginForm,
   RightLoginContent,
@@ -27,4 +29,5 @@ export {
   LoadingSpiner,
   AddEvent,
   AddEventModal,
+  Footer,
 };

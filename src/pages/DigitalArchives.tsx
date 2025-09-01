@@ -33,6 +33,8 @@ function extractYouTubeId(url?: string | null): string {
 }
 
 const DigitalArchives = () => {
+  const isDigitalArchivesPage =
+    window.location.href.includes("digital-archives");
   const [category, setCategory] = useState("");
   const [selectedItem, setSelectedItem] = useState<IArchiveItemResponse | null>(
     null
@@ -74,7 +76,11 @@ const DigitalArchives = () => {
 
   return (
     <>
-      <section className="p-6 min-[285px]:w-xs min-[285px]:mx-auto border-fuchsia-100 border-2 min-[523px]:w-lg lg:w-[165%] dark:bg-[#28264f] dark:text-white rounded-lg shadow-lg lg:ml-40 dark:border-none">
+      <section
+        className={`${!isDigitalArchivesPage ? "lg:w-[165%]" : ""} ${
+          isDigitalArchivesPage ? "mt-15" : ""
+        } p-6 min-[285px]:w-xs min-[285px]:mx-auto border-fuchsia-100 border-2 min-[523px]:w-lg lg:w-[80%] dark:bg-[#28264f] dark:text-white rounded-lg shadow-lg lg:ml-40 dark:border-none`}
+      >
         {/* Header */}
         <div className="flex justify-between items-center">
           <div className="mb-6">
@@ -153,7 +159,9 @@ const DigitalArchives = () => {
           <iframe
             width="100%"
             height="315"
-            src={`https://www.youtube.com/embed/${extractYouTubeId(selectedItem?.videoUrl)}`}
+            src={`https://www.youtube.com/embed/${extractYouTubeId(
+              selectedItem?.videoUrl
+            )}`}
             allowFullScreen
           />
         </Modal>

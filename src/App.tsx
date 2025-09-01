@@ -2,7 +2,7 @@ import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ProtectedRoutes } from "./components";
+import { Footer, ProtectedRoutes } from "./components";
 import {
   CulutralInsights,
   Dashboard,
@@ -44,6 +44,7 @@ function App() {
             <Route path="/digital-archives" element={<DigitalArchives />} />
           </Route>
         </Routes>
+        <Footer />
         <ToastContainer position="bottom-center" />
       </Router>
     </>
