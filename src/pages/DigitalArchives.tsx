@@ -12,7 +12,6 @@ interface IArchiveItemResponse {
 
 function extractYouTubeId(url?: string | null): string {
   if (!url) return "";
-  // Try to match common YouTube URL patterns (embed, watch?v=, youtu.be/)
   const regexes = [
     /(?:youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([a-zA-Z0-9_-]{11})/,
     /(?:youtu\.be\/)([a-zA-Z0-9_-]{11})/,
@@ -22,13 +21,12 @@ function extractYouTubeId(url?: string | null): string {
     if (m && m[1]) return m[1];
   }
 
-  // Fallback: try parsing query parameter "v"
   try {
     const u = new URL(url);
     const v = u.searchParams.get("v");
     if (v && /^[a-zA-Z0-9_-]{11}$/.test(v)) return v;
   } catch {
-    // ignore invalid URL parsing
+    console.error("Invalid URL:", url);
   }
 
   return "";
@@ -156,7 +154,6 @@ const DigitalArchives = () => {
             width="100%"
             height="315"
             src={`https://www.youtube.com/embed/${extractYouTubeId(selectedItem?.videoUrl)}`}
-            frameBorder="0"
             allowFullScreen
           />
         </Modal>
