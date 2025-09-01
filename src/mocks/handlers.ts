@@ -66,9 +66,9 @@ export const handlers = [
     }),
 
     // THE DASHBOARD CULTURAL INSIGHTS API:
-    http.get<{}, {}>("https://pixabay.com/api/videos", ({ request }) => {
-        const url = new URL(request.url);
-        const query = url.searchParams.get("q");
+    http.get<{}, {}>("https://pixabay.com/api/videos", () => {
+        // const url = new URL(request.url);
+        // const query = url.searchParams.get("q");
         // const perPage = url.searchParams.get("per_page");
         return HttpResponse.json({
             hits,
