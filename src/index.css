@@ -10,6 +10,38 @@
   position: absolute;
 }
 
+/* Animation effect in Login */
+@keyframes border-loop {
+  0% {
+    top: 0;
+    left: 0;
+  }
+  25% {
+    top: 0;
+    left: 100%;
+    transform: translateX(-100%);
+  }
+  50% {
+    top: 100%;
+    left: 100%;
+    transform: translate(-100%, -100%);
+  }
+  75% {
+    top: 100%;
+    left: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    top: 0;
+    left: 0;
+  }
+}
+.animate-border-loop {
+  animation: border-loop 2s linear infinite;
+}
+
+/* ---------------------------------------------------------------------- */
+
 .dark .gradient-filter {
    background-image: linear-gradient(135deg, #1e3a8a, #6b21a8)
 }
@@ -50,6 +82,7 @@
   border-bottom: 8px solid #f1f5f9;
 }
 
+/*  Switch slider of themes */
 .switch {
   position: relative;
   display: inline-block;
@@ -94,7 +127,9 @@ input:checked + .slider {
 input:checked + .slider:before {
   transform: translateX(26px);
 }
+/* ---------------------------------------------------------------------- */
 
+/* Light Calendar: */
 .light-calender .ant-picker-panel {
   background-color: #f1f5f9 !important;
 }

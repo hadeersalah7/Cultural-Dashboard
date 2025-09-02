@@ -11,11 +11,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../redux-features/user/userSlice";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { DashboardContext } from "../contexts/DashboardContext";
-import { EventContext } from './../contexts/EventsContext';
+import { EventContext } from "./../contexts/EventsContext";
+import StarBorder from "./Animations/StarBorder/StarBorder";
 const LoginForm = () => {
     const loading = useSelector((state: RootState) => state.loginUser.loading);
     const { isDark } = useContext(DashboardContext);
-    const {fetchEvents} = useContext(EventContext)
+    const { fetchEvents } = useContext(EventContext);
     const [showPass, setShowPass] = useState(false);
     const navigate = useNavigate();
     const dispatch: AppDispatch = useDispatch();
@@ -46,8 +47,8 @@ const LoginForm = () => {
     const onSubmit = async (data: ILogin) => {
         try {
             const token = await dispatch(loginUser(data));
-            fetchEvents()
-            
+            fetchEvents();
+
             if (!token) {
                 navigate("/login");
             } else {
@@ -112,10 +113,11 @@ const LoginForm = () => {
                     <p className="pt-3 text-red-600">{errors.password?.message}</p>
                 </div>
 
-                <button
+                <StarBorder
                     type="submit"
+                    as="button"
                     className={`btn loginBtn flex mt-12 w-full
-                text-white font-bold tracking-widest rounded-[40px] h-[50px] justify-center items-center cursor-pointer  transition-all duration-300`}
+    text-white font-bold tracking-widest rounded-[40px] h-[50px] justify-center items-center cursor-pointer transition-all duration-300`}
                     disabled={!email || !password || loading}
                 >
                     {loading ? (
@@ -123,7 +125,8 @@ const LoginForm = () => {
                     ) : (
                         "Login"
                     )}
-                </button>
+
+                </StarBorder>
             </form>
         </div>
     );

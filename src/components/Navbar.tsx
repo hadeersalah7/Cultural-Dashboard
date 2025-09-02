@@ -19,7 +19,7 @@ const Navbar = () => {
                             <FaBars className="text-[#8a2cf6]" />
                         )}
                     </button>
-                    <h2 className=" min-[550px]:text-3xl text-[#8a2cf6] font-bold dark:text-white">
+                    <h2 className="pageTitle min-[550px]:text-3xl text-[#8a2cf6] font-bold dark:text-white">
                         {pageTitle || "Overview"}
                     </h2>
                 </div>
