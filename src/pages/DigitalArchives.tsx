@@ -134,7 +134,7 @@ const DigitalArchives = () => {
                 ))}
               </div>
               <button
-                className="text-purple-300 underline text-sm hover:text-purple-400 transition"
+                className="text-purple-300 underline text-sm hover:text-purple-400 transition cursor-pointer"
                 onClick={() => {
                   setSelectedItem(item);
                   setIsModalOpen(true);
