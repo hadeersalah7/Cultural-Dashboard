@@ -312,7 +312,16 @@ input:checked + .slider:before {
 .dark .ant-select-arrow{
   color: #ffff !important;
 }
+/* ---------------------------------------------------------- */
 
+.scrollBtn{
+  display:flex;
+}
+.scrollBtnHidden{
+  display:none;
+}
+
+/* Responsive Design */
 @media screen and (min-width:100px) and (max-width:767px){
   .switch{
     display: none;
