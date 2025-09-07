@@ -4,6 +4,8 @@ import { DashboardContext } from "../contexts/DashboardContext";
 import { AddEvent } from "../components";
 import { EventContext } from "../contexts/EventsContext";
 
+// Behind the UI: a story of clarity, strength, and quiet resilience.
+
 const Events = () => {
   const { isDark } = useContext(DashboardContext);
   const { events } = useContext(EventContext);
