@@ -35,7 +35,7 @@ const Dashboard = () => {
   }, [])
 
   const handleScrollToTopClick = () => {
-    document.querySelector(".pageTitle")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document.querySelector("nav")?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   return (
@@ -51,7 +51,7 @@ const Dashboard = () => {
       </div>
       <button
         ref={btnScrollToTop}
-        className="scrollBtnHidden fixed w-20 h-20 bottom-4 right-4 flex justify-center items-center bg-[#6b21a8] dark:bg-[#28264f] text-white p-3 rounded-full shadow-lg hover:bg-purple-700 transition"
+        className="scrollBtnHidden fixed w-20 h-20 bottom-4 right-4 flex justify-center items-center bg-[#6b21a8] dark:bg-[#28264f] text-white p-3 rounded-full shadow-lg hover:bg-[#b58cd7] transition"
         onClick={handleScrollToTopClick}>
         <BiChevronUp className="text-7xl" />
       </button>
