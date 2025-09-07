@@ -64,7 +64,7 @@ const DigitalArchives = () => {
       title: "Reflections and Growth",
       description:
         "Team members share personal insights and learning experiences.",
-      tags: ["reflections", "feedback", "growth", "team"],
+      tags: ["reflections", "feedback", "growth"],
       type: "Reflections",
       videoUrl: "https://www.youtube.com/watch?v=6nBNvrzHH4E",
     },

@@ -18,7 +18,7 @@ const Sidebar = () => {
       <div className="drawer-side ">
         <section
           className={`fixed top-0 left-0 bottom-0 bg-gradient-to-b from-[#2183e8] to-[#8a2cf6] 
-    dark:from-[#1e3a8a] dark:to-[#6b21a8] 
+    dark:from-[#1e3a8a] dark:to-[#6b21a8] duration-300 ease-in
     ${toggleSidebar ? "w-20" : "w-75"} 
     overflow-y-auto z-50`}
         >
