@@ -7,6 +7,7 @@ import {
   CulutralInsights,
   Dashboard,
   DigitalArchives,
+  Error,
   Events,
   Feedback,
   Layout,
@@ -43,6 +44,7 @@ function App() {
             <Route path="/feedback" element={<Feedback />} />
             <Route path="/digital-archives" element={<DigitalArchives />} />
           </Route>
+          <Route path="*" element={<Error />} />
         </Routes>
         <ToastContainer position="bottom-center" />
       </Router>
