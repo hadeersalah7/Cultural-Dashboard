@@ -6,7 +6,7 @@ import Feedback from "./Feedback";
 import Layout from "./Layout";
 import Login from "./Login";
 import TeamValues from "./TeamValues";
-
+import Error from "./Error"
 
 export {
     Dashboard,
@@ -16,5 +16,6 @@ export {
     DigitalArchives,
     Events,
     Feedback,
-    TeamValues
+    TeamValues,
+    Error
 }
